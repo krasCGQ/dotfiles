@@ -1,1 +1,1 @@
-/home/krascgq/KudProject/src/sushi/sushi.py
+/home/krascgq/.src/sushi/sushi.py
