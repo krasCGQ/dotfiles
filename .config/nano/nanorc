@@ -1,2 +1,20 @@
 # Include all existing syntax definitions
 include "/usr/share/nano/*.nanorc"
+
+# Automatically indent new lines
+set autoindent
+
+# Read file to new buffer by default
+set multibuffer
+
+# Don't show help menu (can be enabled at any time)
+set nohelp
+
+# Don't wrap text by default (damn you, Arch Linux)
+set nowrap
+
+# Smooth scrolling by default
+set smooth
+
+# Detect word boundaries more accurately
+set wordbounds
