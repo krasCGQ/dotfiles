@@ -17,7 +17,7 @@ SWAP_FILE=${HOME}/.swapfile
 ZIPSIGNER=${HOME}/.files/bin/zipsigner-3.0.jar
 
 # Export every variables to satisfy shellcheck
-export BTGDIR OPTDIR ZIPSIGNER
+export BTGDIR OPTDIR SWAP_FILE ZIPSIGNER
 
 # Source my notebook (and common) environment setup
 # shellcheck source=/dev/null
