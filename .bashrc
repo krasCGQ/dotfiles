@@ -13,6 +13,7 @@ alias ls='ls --color=auto'
 # For use with my environment setup only
 BTGDIR=${HOME}/KudProject/gcc
 OPTDIR=/opt/kud
+SWAP_FILE=${HOME}/.swapfile
 ZIPSIGNER=${HOME}/.files/bin/zipsigner-3.0.jar
 
 # Export every variables to satisfy shellcheck
