@@ -18,12 +18,13 @@ set $term gnome-terminal
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
 #set $menu dmenu_path | dmenu | xargs swaymsg exec
-set $menu bemenu-run c --fn 'Monospace 10' | xargs swaymsg exec
+set $menu bemenu-run w --fn 'Monospace 10' | xargs swaymsg exec
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+#output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output * bg /home/krascgq/Pictures/Wallpapers/'Konachan.com - 276463 building butterfly city clouds food fruit hat long_hair original red_eyes skirt sky staff strawberry thighhighs touhourh twintails witch_hat.png' fill
 #
 # Example configuration:
 #
@@ -44,6 +45,9 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
+exec swayidle \
+    timeout 300 'swaylock-blur' \
+    before-sleep 'swaylock-blur'
 
 ### Input configuration
 #
@@ -202,6 +206,11 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+# Take screenshot
+bindsym Print exec "grim -c ~/Pictures/Screenshot_$(date +"%Y%m%d-%H%M%S").png"
+# Lock session immediately
+bindsym $mod+Delete exec swaylock-blur
+
 #
 # Status Bar:
 #
@@ -211,15 +220,28 @@ bar {
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    # status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
+    #status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
 
     colors {
         statusline #ffffff
-        background #323232
+        #background #323232
+        background #00000036
         inactive_workspace #32323200 #32323200 #5c5c5c
     }
 
     status_command i3status
 }
+
+# Panel porn, yay
+# <client.color_class> border  background   text    indicator child_border
+client.focused	       #00000072 #00000072  #ffffff #000000   #00000072
+client.unfocused       #00000036 #00000036  #ffffff #000000   #00000036
+
+# Title bar font
+font "Cantarell Bold 10.5"
+
+# Borders and gaps
+hide_edge_borders smart
+smart_gaps on
 
 include /etc/sway/config.d/*
