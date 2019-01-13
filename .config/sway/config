@@ -14,7 +14,7 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term gnome-terminal
+set $term io.elementary.terminal
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
 #set $menu dmenu_path | dmenu | xargs swaymsg exec
@@ -47,6 +47,8 @@ output * bg /home/krascgq/Pictures/Wallpapers/'Konachan.com - 276463 building bu
 # resumed. It will also lock your screen before your computer goes to sleep.
 exec swayidle \
     timeout 300 'swaylock-blur' \
+    timeout 600 'swaymsg "output * dpms off"' \
+        resume 'swaymsg "output * dpms on"' \
     before-sleep 'swaylock-blur'
 
 ### Input configuration
@@ -230,12 +232,16 @@ bar {
     }
 
     status_command i3status
+
+    # Use Monospace family font
+    font "Andale Mono 10.5"
 }
 
 # Panel porn, yay
-# <client.color_class> border  background   text    indicator child_border
-client.focused	       #00000072 #00000072  #ffffff #000000   #00000072
-client.unfocused       #00000036 #00000036  #ffffff #000000   #00000036
+# <client.color_class>  border  background   text    indicator child_border
+client.focused          #00000072 #00000072  #ffffff #000000   #00000072
+client.focused_inactive #00000036 #00000036  #ffffff #000000   #00000072
+client.unfocused        #00000036 #00000036  #ffffff #000000   #00000036
 
 # Title bar font
 font "Cantarell Bold 10.5"
