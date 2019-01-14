@@ -21,4 +21,10 @@ export BTGDIR OPTDIR SWAP_FILE ZIPSIGNER
 
 # Source my notebook (and common) environment setup
 # shellcheck source=/dev/null
-. "${HOME}/KudProject/scripts/env/notebook"
+. "${HOME}"/KudProject/scripts/env/notebook
+
+# Additionally, source some snippets
+for SNIPPET in pia tg_sendinline; do
+    # shellcheck source=/dev/null
+    . "${HOME}"/KudProject/scripts/snippets/${SNIPPET}
+done
