@@ -1,0 +1,10 @@
+# Add /usr/local/bin to PATH
+export PATH=/data/data/com.termux/files/usr/local/bin:${PATH}
+
+# Init antibody
+. <(antibody init)
+
+# Load antibody plugins
+for plugin in mafredri/zsh-async sindresorhus/pure; do
+    antibody bundle ${plugin}
+done
