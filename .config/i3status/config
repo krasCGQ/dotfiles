@@ -14,13 +14,13 @@ general {
 order += "disk /"
 order += "disk /home"
 order += "path_exists VPN"
-order += "wireless wlp2s0"
+order += "wireless wlp3s0"
 order += "ethernet _first_"
 order += "battery all"
 order += "cpu_usage"
 order += "tztime local"
 
-wireless wlp2s0 {
+wireless wlp3s0 {
         format_up = "W: %quality (%essid)"
         format_down = "W: down"
 }
