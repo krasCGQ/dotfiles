@@ -14,15 +14,15 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term gnome-terminal
+set $term termite
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
-set $menu bemenu-run w --fn 'Monospace 10' | xargs swaymsg exec
+set $menu bemenu-run w --fn 'Anonymous Pro 12' | xargs swaymsg exec
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output * bg /home/krascgq/Pictures/82f679d86c3cd63e20cf0a6e30de6631.png fill
 #
 # Example configuration:
 #
@@ -225,27 +225,30 @@ bar {
 
     colors {
         statusline #ffffff
-        background #00000036
+        background #0000006C
         inactive_workspace #32323200 #32323200 #5c5c5c
     }
 
     status_command i3status
 
     # Use Monospace family font
-    font "Andale Mono 10.5"
+    font "Anonymous Pro 12"
 }
 
 # Panel porn, yay
 # <client.color_class>  border  background   text    indicator child_border
-client.focused          #00000072 #00000072  #ffffff #000000   #00000072
-client.focused_inactive #00000036 #00000036  #ffffff #000000   #00000072
-client.unfocused        #00000036 #00000036  #ffffff #000000   #00000036
+client.focused          #000000A2 #000000A2  #ffffff #000000   #000000A2
+client.focused_inactive #0000006C #0000006C  #ffffff #000000   #000000A2
+client.unfocused        #0000006C #0000006C  #ffffff #000000   #0000006C
 
 # Title bar font
 font "Cantarell Bold 10.5"
 
+# Border settings
+default_border pixel 6
+
 # Borders and gaps
-hide_edge_borders smart
+hide_edge_borders none
 smart_gaps on
 
 include /etc/sway/config.d/*

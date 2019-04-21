@@ -4,8 +4,14 @@
 # Syntax: simple "KEY=VAL" pairs on separate lines
 #
 
-# Qt 5: Honor current DPI settings
-QT_AUTO_SCREEN_SCALE_FACTOR=1
+# Qt: Force use of monitor's DPI
+QT_WAYLAND_FORCE_DPI=physical
+
+# Qt: Disable client-side decorations drawing on Wayland
+QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 
 # mpv: It may load incorrect Vulkan driver, so specify explicitly what to load
 VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/intel_icd.x86_64.json
+
+# wlroots: Set default card
+WLR_DRM_DEVICES=/dev/dri/card1
