@@ -236,10 +236,10 @@ bar {
 }
 
 # Panel porn, yay
-# <client.color_class>  border  background   text    indicator child_border
-client.focused          #000000A2 #000000A2  #ffffff #000000   #000000A2
-client.focused_inactive #0000006C #0000006C  #ffffff #000000   #000000A2
-client.unfocused        #0000006C #0000006C  #ffffff #000000   #0000006C
+# <client.color_class>  border  background   text    indicator   child_border
+client.focused          #000000A2 #000000A2  #ffffff #000000A2   #000000A2
+client.focused_inactive #0000006C #0000006C  #ffffff #000000A2   #000000A2
+client.unfocused        #0000006C #0000006C  #ffffff #0000006C   #0000006C
 
 # Title bar font
 font "Cantarell Bold 10.5"
