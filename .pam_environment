@@ -12,6 +12,3 @@ QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 
 # mpv: It may load incorrect Vulkan driver, so specify explicitly what to load
 VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/intel_icd.x86_64.json
-
-# wlroots: Set default card
-WLR_DRM_DEVICES=/dev/dri/by-path/pci-0000:00:02.0-card
