@@ -1,6 +1,4 @@
-#!/usr/bin/env bash
-# ^ explicit declaration
-
+# shellcheck shell=bash
 #
 # ~/.bash_profile
 #
