@@ -74,7 +74,7 @@ input "1739:33362:Synaptics_TM3336-002" {
 # Basics:
 #
     # start a terminal
-    bindsym $mod+Return exec $term
+    bindsym $mod+t exec $term
 
     # kill focused window
     bindsym $mod+Shift+q kill
@@ -211,6 +211,13 @@ bindsym $mod+r mode "resize"
 bindsym Print exec "grim -c ~/Pictures/Screenshot_$(date +"%Y%m%d-%H%M%S").png"
 # Lock session immediately
 bindsym $mod+Delete exec swaylock-blur
+# Function keys
+bindsym 0x1008ff02 exec "test $(cat /sys/class/backlight/$(xbacklight -list | head -1)/brightness) -lt 428 && xbacklight -set 10 || xbacklight -inc 10"
+bindsym 0x1008ff03 exec "test $(cat /sys/class/backlight/$(xbacklight -list | head -1)/brightness) -gt 428 && xbacklight -dec 10 || xbacklight -set 1"
+bindsym 0x1008ff11 exec "amixer set Master 5%-"
+bindsym 0x1008ff12 exec "amixer set Master toggle"
+bindsym 0x1008ff13 exec "amixer set Master 5%+"
+bindsym 0x1008ffb2 exec "amixer set Capture toggle"
 
 #
 # Status Bar:
