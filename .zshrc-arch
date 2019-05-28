@@ -11,3 +11,35 @@ zstyle :compinstall filename '/home/krascgq/.zshrc'
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
+
+# Lines added manually
+
+# Allow expansion on prompts
+setopt prompt_subst
+
+# Load colors module
+autoload -Uz colors
+colors
+
+# Init antibody
+source <(antibody init)
+
+# Load antibody plugins
+for i in 'robbyrussell/oh-my-zsh path:plugins/gitfast' tylerreckart/hyperzsh; do
+    antibody bundle ${i}
+done
+
+# Load Oh-My-Zsh lib required by prompt theme
+source $(antibody home)/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh/lib/git.zsh
+
+# Redefinition
+_return_status="%{$fg[red]%}%(?..⍉ )%{$reset_color%}"
+
+# Update prompt to omit username + add whitespace at the end, and because bold looks cool
+PROMPT='%{$fg_bold[white]%}$(_python_venv)%{$fg[cyan]%}%c $(git_prompt_info)%{$fg_bold[white]%}$(_git_time_since_commit)$(git_prompt_status)${_return_status}➜ %{$reset_color%} '
+
+# Enable color output for some GNU programs
+alias grep='grep --color=auto'
+alias ls='ls --color=auto'
+
+# End of lines added manually
