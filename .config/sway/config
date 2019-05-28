@@ -22,7 +22,7 @@ set $menu bemenu-run w --fn 'Anonymous Pro 12' | xargs swaymsg exec
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /home/krascgq/Pictures/82f679d86c3cd63e20cf0a6e30de6631.png fill
+output * bg /home/krascgq/Pictures/50aebecce3e59161a74f9e6e8e75a1cd.jpg fill
 #
 # Example configuration:
 #
@@ -214,9 +214,9 @@ bindsym $mod+Delete exec swaylock-blur
 # Function keys
 bindsym 0x1008ff02 exec "test $(cat /sys/class/backlight/$(xbacklight -list | head -1)/brightness) -lt 428 && xbacklight -set 10 || xbacklight -inc 10"
 bindsym 0x1008ff03 exec "test $(cat /sys/class/backlight/$(xbacklight -list | head -1)/brightness) -gt 428 && xbacklight -dec 10 || xbacklight -set 1"
-bindsym 0x1008ff11 exec "amixer set Master 5%-"
+bindsym 0x1008ff11 exec "amixer set Master $((65535/15))-"
 bindsym 0x1008ff12 exec "amixer set Master toggle"
-bindsym 0x1008ff13 exec "amixer set Master 5%+"
+bindsym 0x1008ff13 exec "amixer set Master $((65535/15))+"
 bindsym 0x1008ffb2 exec "amixer set Capture toggle"
 
 #
@@ -228,15 +228,16 @@ bar {
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    #status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
+    status_command i3status-rs ~/.config/i3/config.toml
 
     colors {
         statusline #ffffff
         background #0000006C
-        inactive_workspace #32323200 #32323200 #5c5c5c
+        inactive_workspace #0000006C #0000006C #ffffff
     }
 
-    status_command i3status
+    # Disable system tray
+    tray_output none
 
     # Use Monospace family font
     font "Anonymous Pro 12"
