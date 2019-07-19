@@ -5,3 +5,9 @@ ssl
 *~
 *.bak
 *state*
+
+# unique per computer
+auth
+
+# store encrypted core config file instead; contains socks auth data
+core.conf
