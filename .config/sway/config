@@ -22,7 +22,7 @@ set $menu bemenu-run w --fn 'Anonymous Pro 12' | xargs swaymsg exec
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /home/krascgq/Pictures/50aebecce3e59161a74f9e6e8e75a1cd.jpg fill
+output * bg /home/krascgq/Pictures/IMG_20190716_150757.jpg fill
 #
 # Example configuration:
 #
