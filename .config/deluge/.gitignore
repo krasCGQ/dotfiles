@@ -1,10 +1,15 @@
-deluged.log
-icons
-ipc
-ssl
+# backup files
 *~
-*.bak
-*state*
+
+# cached site icon files
+icons/
+
+# sockets
+ipc/
+
+# state files
+*.state
+state/
 
 # unique per computer
 auth
