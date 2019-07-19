@@ -12,7 +12,7 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-# Lines added manually
+## All the mess done for display porn ##
 
 # Allow expansion on prompts
 setopt prompt_subst
@@ -26,11 +26,14 @@ source <(antibody init)
 
 # Load antibody plugins
 for i in 'robbyrussell/oh-my-zsh path:plugins/gitfast' tylerreckart/hyperzsh; do
-    antibody bundle ${i}
+    antibody bundle $i
 done
 
 # Load Oh-My-Zsh lib required by prompt theme
 source $(antibody home)/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh/lib/git.zsh
+
+# Get that Bash feeling back
+source $(antibody home)/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh/lib/key-bindings.zsh
 
 # Redefinition
 _return_status="%{$fg[red]%}%(?..⍉ )%{$reset_color%}"
@@ -42,4 +45,21 @@ PROMPT='%{$fg_bold[white]%}$(_python_venv)%{$fg[cyan]%}%c $(git_prompt_info)%{$f
 alias grep='grep --color=auto'
 alias ls='ls --color=auto'
 
-# End of lines added manually
+## Pretty much all my custom stuffs exported earlier
+
+# For use with my environment setup only
+BTGDIR=$HOME/KudProject/gcc
+OPTDIR=/opt/kud
+SWAP_FILE=$HOME/.swapfile
+ZIPSIGNER=$HOME/.files/bin/zipsigner-3.0.jar
+
+# Export every variables to satisfy shellcheck
+export BTGDIR OPTDIR SWAP_FILE ZIPSIGNER
+
+# Source my notebook (and common) environment setup
+. "$HOME"/.files/scripts/env/notebook
+
+# Additionally, source some snippets
+for SNIPPET in pia tg_sendinline; do
+    . "$HOME"/.files/scripts/snippets/$SNIPPET
+done
