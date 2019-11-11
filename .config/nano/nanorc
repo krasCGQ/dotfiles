@@ -1,9 +1,6 @@
 # Include all existing syntax definitions
 include "/usr/share/nano/*.nanorc"
 
-# Automatically indent new lines
-set autoindent
-
 # Read file to new buffer by default
 set multibuffer
 

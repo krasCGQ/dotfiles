@@ -33,7 +33,7 @@ interval = 1
 
 [[block]]
 block = "custom"
-command = "${HOME}/.files/scripts/wrappers/vpn"
+command = "${HOME}/.files/scripts/wrappers/vpn.bash"
 interval = 1
 
 [[block]]
@@ -56,7 +56,7 @@ block = "cpu"
 
 [[block]]
 block = "custom"
-command = "${HOME}/.files/scripts/wrappers/battery"
+command = "${HOME}/.files/scripts/wrappers/battery.bash"
 interval = 1
 
 [[block]]
