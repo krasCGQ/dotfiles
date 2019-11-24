@@ -1,14 +1,3 @@
-#
-# This file is parsed by pam_env module
-#
-# Syntax: simple "KEY=VAL" pairs on separate lines
-#
-
-# Qt: Force use of monitor's DPI
-QT_WAYLAND_FORCE_DPI=physical
-
-# Qt: Disable client-side decorations drawing on Wayland
-QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-
-# mpv: It may load incorrect Vulkan driver, so specify explicitly what to load
+LIBVA_DRIVER_NAME=iHD
+MESA_LOADER_DRIVER_OVERRIDE=iris
 VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/intel_icd.x86_64.json
