@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=1000
@@ -24,22 +31,9 @@ colors
 # Init antibody
 source <(antibody init)
 
-# Load antibody plugins
-for i in 'robbyrussell/oh-my-zsh path:plugins/gitfast' tylerreckart/hyperzsh; do
-    antibody bundle $i
-done
-
-# Load Oh-My-Zsh lib required by prompt theme
-source $(antibody home)/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh/lib/git.zsh
-
+antibody bundle romkatv/powerlevel10k
 # Get that Bash feeling back
 source $(antibody home)/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh/lib/key-bindings.zsh
-
-# Redefinition
-_return_status="%{$fg[red]%}%(?..⍉ )%{$reset_color%}"
-
-# Update prompt to omit username + add whitespace at the end, and because bold looks cool
-PROMPT='%{$fg_bold[white]%}$(_python_venv)%{$fg[cyan]%}%c $(git_prompt_info)%{$fg_bold[white]%}$(_git_time_since_commit)$(git_prompt_status)${_return_status}➜ %{$reset_color%} '
 
 # Enable color output for some GNU programs
 alias grep='grep --color=auto'
@@ -48,13 +42,11 @@ alias ls='ls --color=auto'
 ## Pretty much all my custom stuffs exported earlier
 
 # For use with my environment setup only
-BTGDIR=$HOME/KudProject/gcc
 OPTDIR=/opt/kud
-SWAP_FILE=$HOME/.swapfile
 ZIPSIGNER=$HOME/.files/bin/zipsigner-3.0.jar
 
 # Export every variables to satisfy shellcheck
-export BTGDIR OPTDIR SWAP_FILE ZIPSIGNER
+export OPTDIR ZIPSIGNER
 
 # Source my notebook (and common) environment setup
 . "$HOME"/.files/scripts/env/notebook
@@ -63,3 +55,9 @@ export BTGDIR OPTDIR SWAP_FILE ZIPSIGNER
 for SNIPPET in pia tg_sendinline; do
     . "$HOME"/.files/scripts/snippets/$SNIPPET
 done
+
+# virtualenv2
+export VIRTUAL_ENV_DISABLE_PROMPT=true
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
