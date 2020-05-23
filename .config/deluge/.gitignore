@@ -16,3 +16,8 @@ auth
 
 # store encrypted core config file instead; contains socks auth data
 core.conf
+
+# daemon-specific files
+deluged.log
+hostlist.conf.*
+ssl/
