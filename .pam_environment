@@ -16,3 +16,6 @@ QT_STYLE_OVERRIDE=Kvantum
 
 # List of Vulkan ICDs to load; x86_64 > i686
 VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/radeon_icd.x86_64.json:/usr/share/vulkan/icd.d/radeon_icd.i686.json:/usr/share/vulkan/icd.d/intel_icd.x86_64.json:/usr/share/vulkan/icd.d/intel_icd.i686.json
+
+# Zstandard: default compression level override
+ZSTD_CLEVEL=20
