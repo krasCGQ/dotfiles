@@ -1,10 +1,9 @@
-# Add /usr/local/bin to PATH
-export PATH=/data/data/com.termux/files/usr/local/bin:${PATH}
+# Source common .zshrc
+. "$HOME"/.files/.zshrc-common
 
-# Init antibody
-. <(antibody init)
-
-# Load antibody plugins
-for plugin in mafredri/zsh-async sindresorhus/pure; do
-    antibody bundle ${plugin}
+# Antibody plugins
+PLUGINS=(mafredri/zsh-async sindresorhus/pure)
+for PLUGIN in "${PLUGINS[@]}"; do
+    antibody bundle "${PLUGIN}"
 done
+unset PLUGINS

@@ -5,35 +5,15 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Lines configured by zsh-newuser-install
-HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
-setopt appendhistory autocd notify
-bindkey -e
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
-zstyle :compinstall filename '/home/krascgq/.zshrc'
+# Source common .zshrc
+. "$HOME"/.files/.zshrc-common
 
-autoload -Uz compinit
-compinit
-# End of lines added by compinstall
-
-## All the mess done for display porn ##
-
-# Allow expansion on prompts
-setopt prompt_subst
-
-# Load colors module
-autoload -Uz colors
-colors
-
-# Init antibody
-source <(antibody init)
-
-antibody bundle romkatv/powerlevel10k
-# Get that Bash feeling back
-source $(antibody home)/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh/lib/key-bindings.zsh
+# Antibody plugins
+PLUGINS=(romkatv/powerlevel10k NickKaramoff/ohmyzsh-key-bindings)
+for PLUGIN in "${PLUGINS[@]}"; do
+    antibody bundle "$PLUGIN"
+done
+unset PLUGINS
 
 # Enable color output for some GNU programs
 alias grep='grep --color=auto'
