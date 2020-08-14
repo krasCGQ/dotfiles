@@ -11,9 +11,6 @@ CCACHE_EXEC=/usr/bin/ccache
 # VA-API driver name
 LIBVA_DRIVER_NAME=iHD
 
-# Mesa: Use experimental ACO compiler (AMD)
-RADV_PERFTEST=aco
-
 # Qt: Use Kvantum 
 QT_STYLE_OVERRIDE=Kvantum
 
