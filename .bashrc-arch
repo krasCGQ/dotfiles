@@ -1,22 +1,27 @@
 # shellcheck shell=bash
 # ~/.bashrc
 
-## BASH DEFAULTS ##
-
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-alias ls='ls --color=auto'
+# powerline-shell: No dynamic updates...
+_update_ps1() { PS1=$("$HOME"/.local/bin/powerline-shell $?); }
 
-## CUSTOM MODIFICATIONS ##
+# Enable color support for some GNU programs
+alias dir='dir --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias grep='grep --color=auto'
+alias ls='ls --color=auto'
+alias vdir='vdir --color=auto'
+
+# powerline-shell: No dynamic updates...
+if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
+    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+fi
 
 # For use with my environment setup only
-BTGDIR=${HOME}/KudProject/gcc
-OPTDIR=/opt/kud
-SWAP_FILE=${HOME}/.swapfile
-
-# Export every variables to satisfy shellcheck
-export BTGDIR OPTDIR SWAP_FILE
+export OPTDIR=/opt/kud
 
 # Source my notebook (and common) environment setup
 # shellcheck source=/dev/null
