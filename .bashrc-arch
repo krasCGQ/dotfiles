@@ -20,9 +20,6 @@ if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 fi
 
-# For use with my environment setup only
-export OPTDIR=/opt/kud
-
 # Source my notebook (and common) environment setup
 # shellcheck source=/dev/null
 . "${HOME}"/KudProject/scripts/env/notebook

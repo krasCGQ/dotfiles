@@ -26,9 +26,6 @@ unset PLUGINS
 # virtualenv2: Marker handled by Powerlevel10k
 export VIRTUAL_ENV_DISABLE_PROMPT=true
 
-# For use with my environment setup only
-export OPTDIR=/opt/kud
-
 # Source my notebook (and common) environment setup
 . "$HOME"/.files/scripts/env/notebook
 
