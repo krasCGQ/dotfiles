@@ -23,6 +23,12 @@ for PLUGIN in "${PLUGINS[@]}"; do
 done
 unset PLUGINS
 
+PLUGINS=(autosuggestions syntax-highlighting)
+for PLUGIN in "${PLUGINS[@]}"; do
+    source /usr/share/zsh/plugins/zsh-"$PLUGIN"/zsh-"$PLUGIN".zsh 2>/dev/null
+done
+unset PLUGINS
+
 # virtualenv2: Marker handled by Powerlevel10k
 export VIRTUAL_ENV_DISABLE_PROMPT=true
 
@@ -30,7 +36,7 @@ export VIRTUAL_ENV_DISABLE_PROMPT=true
 . "$HOME"/.files/scripts/env/notebook
 
 # Additionally, source some snippets
-for SNIPPET in pia tg_sendinline; do
+for SNIPPET in pia tg_sendinline zipsigner; do
     . "$HOME"/.files/scripts/snippets/$SNIPPET
 done
 
