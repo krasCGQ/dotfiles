@@ -18,7 +18,7 @@ alternating_tint_fg = "#ffffff"
 
 [[block]]
 block = "custom"
-command = "echo ' '$(whoami)@$(hostname)"
+command = "echo ' '$(whoami)@$(</etc/hostname)"
 
 [[block]]
 block = "disk_space"

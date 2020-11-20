@@ -21,7 +21,7 @@ if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
 fi
 
 # Source my environment setup
-[[ $(hostname) == grozny ]] && TYPE=server || TYPE=notebook
+[[ $(</etc/hostname) == grozny ]] && TYPE=server || TYPE=notebook
 # shellcheck source=/dev/null
 . "${HOME}"/.files/scripts/env/$TYPE
 
