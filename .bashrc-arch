@@ -22,10 +22,10 @@ fi
 
 # Source my notebook (and common) environment setup
 # shellcheck source=/dev/null
-. "${HOME}"/KudProject/scripts/env/notebook
+. "${HOME}"/.files/scripts/env/notebook
 
 # Additionally, source some snippets
 for SNIPPET in pia tg_sendinline; do
     # shellcheck source=/dev/null
-    . "${HOME}"/KudProject/scripts/snippets/${SNIPPET}
+    . "${HOME}"/.files/scripts/snippets/${SNIPPET}
 done
