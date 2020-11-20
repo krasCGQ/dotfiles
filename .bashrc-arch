@@ -20,12 +20,13 @@ if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 fi
 
-# Source my notebook (and common) environment setup
+# Source my environment setup
+[[ $(hostname) == grozny ]] && TYPE=server || TYPE=notebook
 # shellcheck source=/dev/null
-. "${HOME}"/.files/scripts/env/notebook
+. "${HOME}"/.files/scripts/env/$TYPE
 
 # Additionally, source some snippets
-for SNIPPET in pia tg_sendinline; do
+for SNIPPET in tg_sendinline zipsigner; do
     # shellcheck source=/dev/null
     . "${HOME}"/.files/scripts/snippets/${SNIPPET}
 done
