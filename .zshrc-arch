@@ -36,7 +36,7 @@ export VIRTUAL_ENV_DISABLE_PROMPT=true
 . "$HOME"/.files/scripts/env/notebook
 
 # Additionally, source some snippets
-for SNIPPET in pia tg_sendinline zipsigner; do
+for SNIPPET in pia tg_sendinline; do
     . "$HOME"/.files/scripts/snippets/$SNIPPET
 done
 
