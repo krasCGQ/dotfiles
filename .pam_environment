@@ -4,9 +4,12 @@
 # Syntax: simple "KEY=VAL" pairs on separate lines
 #
 
-# AOSP: Compiler cache
+# Compiler cache
 USE_CCACHE=1
+CCACHE_CONFIGPATH=/home/krascgq/.ccache/ccache.conf
+CCACHE_DIR=/mnt/ccache
 CCACHE_EXEC=/usr/bin/ccache
+CCACHE_NOCOMPRESS=
 
 # VA-API driver name
 LIBVA_DRIVER_NAME=iHD
