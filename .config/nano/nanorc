@@ -8,10 +8,7 @@ set multibuffer
 set nohelp
 
 # Don't wrap text by default (damn you, Arch Linux)
-set nowrap
-
-# Smooth scrolling by default
-set smooth
+unset breaklonglines
 
 # Detect word boundaries more accurately
 set wordbounds
