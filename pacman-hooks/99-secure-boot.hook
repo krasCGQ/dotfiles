@@ -8,7 +8,7 @@ Target = usr/lib/modules/*/vmlinuz
 [Action]
 Description = Signing kernel(s) for Secure Boot
 When = PostTransaction
-Exec = /usr/bin/find /boot/ -maxdepth 1 -name 'vmlinuz-*' -exec /usr/bin/sh -c 'if ! /usr/bin/sbverify --list {} 2> /dev/null | /usr/bin/grep -q "signature certificates"; then /usr/bin/sbsign --key /root/db.key --cert /root/db.crt --output {} {}; fi' \ ;
+Exec = /usr/bin/find /boot/ -maxdepth 1 -name 'vmlinuz-*' -exec /usr/bin/sh -c 'if ! /usr/bin/sbverify --list {} 2> /dev/null | /usr/bin/grep -q "signature certificates"; then /usr/bin/sbsign --key /root/secureboot/current/db.key --cert /root/secureboot/current/db.crt --output {} {}; fi' \ ;
 Depends = sbsigntools
 Depends = findutils
 Depends = grep

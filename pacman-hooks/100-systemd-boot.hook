@@ -6,5 +6,5 @@ Target = systemd
 [Action]
 Description = Updating systemd-boot
 When = PostTransaction
-Exec = /usr/bin/bash -c "/usr/bin/bootctl update; for i in /boot/EFI/systemd/systemd-bootx64.efi /boot/EFI/BOOT/BOOTX64.EFI; do /usr/bin/sbsign --key /root/db.key --cert /root/db.crt --output $i $i; done"
+Exec = /usr/bin/bash -c "/usr/bin/bootctl update; for i in /boot/EFI/systemd/systemd-bootx64.efi /boot/EFI/BOOT/BOOTX64.EFI; do /usr/bin/sbsign --key /root/secureboot/current/db.key --cert /root/secureboot/current/db.crt --output $i $i; done"
 Depends = sbsigntools
