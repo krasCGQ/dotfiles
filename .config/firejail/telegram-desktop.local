@@ -1,0 +1,8 @@
+include whitelist-player-common.inc
+
+noblacklist ${DOCUMENTS}
+noblacklist ${MUSIC}
+noblacklist ${PICTURES}
+noblacklist ${VIDEOS}
+
+whitelist ${DOCUMENTS}
