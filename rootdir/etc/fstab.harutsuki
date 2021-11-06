@@ -1,0 +1,26 @@
+# Static information about the filesystems.
+# See fstab(5) for details.
+
+# <file system> <dir> <type> <options> <dump> <pass>
+
+proc                                         /proc    proc    nosuid,nodev,noexec,gid=proc,hidepid=2    0    0
+
+## /dev/nvme0n1p2
+UUID=0759895e-c802-46b9-ac02-6954eb8401ac    /    f2fs    nodev,noatime,data_flush    0    1
+
+## /dev/nvme0n1p1
+UUID=D3C4-C591                               /boot    vfat    nosuid,nodev,noexec,discard    0    2
+
+## /dev/nvme0n1p3
+UUID=48a56c2a-1500-41bc-8bda-ef2f0f4c7625    /mnt/ssd    f2fs    nosuid,nodev,noatime,data_flush    0    0
+
+## /dev/sda -> /dev/mapper/sda_crypt
+# Practically, only at first attempt of mounting a Btrfs volume will require supplying full flags.
+# However, it seems like systemd will mount subvolumes in whatever order they like, so we specify
+# our mount flags for each subvolume mounts.
+UUID=f908abfd-4679-400a-b944-7c4f0c4cb096    /home                      btrfs    rescue=usebackuproot,nosuid,nodev,noexec,noatime,compress-force=zstd:1,ssd,discard=async,space_cache=v2,autodefrag,subvolid=256,subvol=/home          0    0
+UUID=f908abfd-4679-400a-b944-7c4f0c4cb096    /var/lib/libvirt/images    btrfs    rescue=usebackuproot,nosuid,nodev,noexec,noatime,compress-force=zstd:1,ssd,discard=async,space_cache=v2,autodefrag,subvolid=257,subvol=/libvirt       0    0
+UUID=f908abfd-4679-400a-b944-7c4f0c4cb096    /mnt/android-out           btrfs    rescue=usebackuproot,nosuid,nodev,noatime,compress-force=zstd:1,ssd,discard=async,space_cache=v2,autodefrag,subvolid=258,subvol=/android              0    0
+UUID=f908abfd-4679-400a-b944-7c4f0c4cb096    /etc/cryptsetup-keys.d     btrfs    rescue=usebackuproot,nosuid,nodev,noexec,noatime,compress-force=zstd:1,ssd,discard=async,space_cache=v2,autodefrag,subvolid=259,subvol=/cryptsetup    0    0
+UUID=f908abfd-4679-400a-b944-7c4f0c4cb096    /mnt/aur                   btrfs    rescue=usebackuproot,nodev,noatime,compress-force=zstd:1,ssd,discard=async,space_cache=v2,autodefrag,subvolid=608,subvol=/archuser                    0    0
+UUID=f908abfd-4679-400a-b944-7c4f0c4cb096    /home/krascgq/.cache       btrfs    rescue=usebackuproot,nosuid,nodev,noatime,compress-force=zstd:1,ssd,discard=async,space_cache=v2,autodefrag,subvolid=609,subvol=/usrcache             0    0
