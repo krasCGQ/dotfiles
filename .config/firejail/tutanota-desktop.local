@@ -1,0 +1,7 @@
+# This breaks executing the binary
+ignore include disable-shell.inc
+
+# Allow accessing secrets service
+ignore dbus-user none
+dbus-user filter
+dbus-user.talk org.freedesktop.secrets
