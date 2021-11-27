@@ -1,7 +1,13 @@
 # This breaks executing the binary
 ignore include disable-shell.inc
 
-# Allow accessing secrets service
+# Unblock standard user directories
+ignore include disable-xdg.inc
+include whitelist-player-common.inc
+whitelist ${DOCUMENTS}
+
+# Allow accessing notifications/secrets service
 ignore dbus-user none
 dbus-user filter
+dbus-user.talk org.freedesktop.Notifications
 dbus-user.talk org.freedesktop.secrets

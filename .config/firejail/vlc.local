@@ -1,0 +1,2 @@
+# This blocks access to /dev/video* devices
+ignore private-dev
