@@ -4,8 +4,11 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# powerline-shell: No dynamic updates...
-_update_ps1() { PS1=$("$HOME"/.local/bin/powerline-shell $?); }
+# Init Powerline
+powerline-daemon -q
+POWERLINE_BASH_CONTINUATION=1
+POWERLINE_BASH_SELECT=1
+. /usr/share/powerline/bindings/bash/powerline.sh
 
 # Enable color support for some GNU programs
 alias dir='dir --color=auto'
@@ -14,11 +17,6 @@ alias fgrep='fgrep --color=auto'
 alias grep='grep --color=auto'
 alias ls='ls --color=auto'
 alias vdir='vdir --color=auto'
-
-# powerline-shell: No dynamic updates...
-if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
-    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
-fi
 
 # Source my environment setup
 [[ $(</etc/hostname) == grozny ]] && TYPE=server || TYPE=notebook
