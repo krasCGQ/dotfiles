@@ -1,6 +1,9 @@
 # Source common .zshrc
 . "$HOME"/.files/.zshrc-common
 
+# Initialize Antibody
+. <(antibody init)
+
 # Antibody plugins
 PLUGINS=(mafredri/zsh-async sindresorhus/pure)
 for PLUGIN in "${PLUGINS[@]}"; do

@@ -18,6 +18,3 @@ setopt prompt_subst
 # Load colors module
 autoload -Uz colors
 colors
-
-# Initialize Antibody
-. <(antibody init)
