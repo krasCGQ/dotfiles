@@ -2,9 +2,7 @@
 ignore include disable-shell.inc
 
 # Unblock standard user directories
-ignore include disable-xdg.inc
-include whitelist-player-common.inc
-whitelist ${DOCUMENTS}
+include unblock-xdg.inc
 
 # Allow accessing notifications/secrets service
 ignore dbus-user none
