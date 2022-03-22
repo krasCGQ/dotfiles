@@ -1,2 +1,5 @@
+# Ignore this for now as it currently segfaults
+ignore env LD_PRELOAD=/usr/lib/libhardened_malloc.so
+
 # This blocks access to /dev/video* devices
 ignore private-dev

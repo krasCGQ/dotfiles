@@ -1,0 +1,4 @@
+# Preload full libhardened_malloc for jailed binaries.
+# For apps that segfault, this can be excluded so it falls back to reduced one
+# currently loaded from /etc/ld.so.preload
+env LD_PRELOAD=/usr/lib/libhardened_malloc.so
