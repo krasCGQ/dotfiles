@@ -5,13 +5,13 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Enable color support for some GNU programs
-alias dir='dir --color=auto'
+alias dir='exa --color=auto'
+alias ls='exa --color=auto'
+alias vdir='exa -H -g -l --color=auto'
+
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias grep='grep --color=auto'
-alias ls='ls --color=auto'
-alias vdir='vdir --color=auto'
 
 # Source common .zshrc
 . "$HOME"/.files/.zshrc-common

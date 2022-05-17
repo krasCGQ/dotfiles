@@ -10,13 +10,13 @@ POWERLINE_BASH_CONTINUATION=1
 POWERLINE_BASH_SELECT=1
 . /usr/share/powerline/bindings/bash/powerline.sh
 
-# Enable color support for some GNU programs
-alias dir='dir --color=auto'
+alias dir='exa --color=auto'
+alias ls='exa --color=auto'
+alias vdir='exa -H -g -l --color=auto'
+
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias grep='grep --color=auto'
-alias ls='ls --color=auto'
-alias vdir='vdir --color=auto'
 
 # Source my environment setup
 [[ $(</etc/hostname) == grozny ]] && TYPE=server || TYPE=notebook
