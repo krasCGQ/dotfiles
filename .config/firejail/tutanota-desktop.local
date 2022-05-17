@@ -1,12 +1,6 @@
 # Unblock standard user directories
 include unblock-xdg.inc
 
-# Uncomment to exclude bash and sh from blacklist.
-# AUR package of tutanota-desktop uses shell script to do what can done otherwise
-# done by creating a symbolic link directly
-#ignore blacklist ${PATH}/bash
-#ignore blacklist ${PATH}/sh
-
 # Allow accessing notifications/secrets service
 ignore dbus-user none
 dbus-user filter
