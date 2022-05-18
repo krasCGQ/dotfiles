@@ -1,0 +1,6 @@
+# Ignore everything in this folder
+*
+
+# but mpv.conf and this gitignore file
+!mpv.conf
+!.gitignore
