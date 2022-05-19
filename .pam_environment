@@ -19,7 +19,8 @@ QT_STYLE_OVERRIDE=Kvantum
 SAL_USE_VCLPLUGIN=gtk3_kde5
 
 # List of Vulkan ICDs to load; x86_64 > i686
-VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/radeon_icd.x86_64.json:/usr/share/vulkan/icd.d/radeon_icd.i686.json:/usr/share/vulkan/icd.d/intel_icd.x86_64.json:/usr/share/vulkan/icd.d/intel_icd.i686.json
+# Don't export this systemwide as VK_ICD_FILENAMES; do it ourselves
+VK_ICD_FILENAMES2=/usr/share/vulkan/icd.d/radeon_icd.x86_64.json:/usr/share/vulkan/icd.d/radeon_icd.i686.json:/usr/share/vulkan/icd.d/intel_icd.x86_64.json:/usr/share/vulkan/icd.d/intel_icd.i686.json
 
 # Wine: Disable debug output by default
 WINEDEBUG=-all
