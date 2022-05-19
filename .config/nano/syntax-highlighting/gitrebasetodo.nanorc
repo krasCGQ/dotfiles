@@ -1,0 +1,48 @@
+# This code is free software; you can redistribute it and/or modify it under
+# the terms of the new BSD License.
+#
+# Copyright (c) 2010, Sebastian Staudt
+# Copyright (C) 2022 Albert I (krasCGQ)
+
+# This syntax format is used for interactive rebasing
+syntax "git-rebase-todo" "git-rebase-todo"
+
+# Default
+color white ".*"
+
+# Comments
+color brightyellow "^#.*"
+
+# Rebase commands
+color magenta       "^(b|break)"
+color magenta       "^# (b, break)"
+color red           "^(d|drop)[[:space:]]+[0-9a-f]{7,40}"
+color red           "^# (d, drop)"
+color green         "^(e|edit)[[:space:]]+[0-9a-f]{7,40}"
+color green         "^# (e, edit)"
+color brightgreen   "^(f|fixup)([[:space:]]+-[Cc])?[[:space:]]+[0-9a-f]{7,40}"
+color brightgreen   "^# (f, fixup) \[-C \| -c\]"
+color brightblue    "^(l|label)[[:space:]]+[^ ]+([[:space:]]+)?$"
+color yellow        "^(l|label)[[:space:]]+"
+color yellow        "^# (l, label)"
+color brightblue    "^(m|merge)([[:space:]]+-[Cc])?[[:space:]]+.*$"
+color brightmagenta "^(m|merge)([[:space:]]+-[Cc])?[[:space:]]+"
+color brightmagenta "^# (m, merge).*$"
+color brightcyan    "^(p|pick)[[:space:]]+[0-9a-f]{7,40}"
+color brightcyan    "^# (p, pick)"
+color blue          "^(r|reword)[[:space:]]+[0-9a-f]{7,40}"
+color blue          "^# (r, reword)"
+color brightred     "^(s|squash)[[:space:]]+[0-9a-f]{7,40}"
+color brightred     "^# (s, squash)"
+color brightblue    "^(t|reset)[[:space:]]+[^ ]+([[:space:]]+)?$"
+color cyan          "^(t|reset)[[:space:]]+"
+color cyan          "^# (t, reset)"
+color brightblue    "^(x|exec)[[:space:]]+.*$"
+color brightwhite   "^(x|exec)[[:space:]]+"
+color brightwhite   "^# (x, exec)"
+
+# Recolor hash symbols
+color brightyellow "^#"
+
+# Commit IDs
+color brightblue  "([0-9a-f]{7,40}|<(command|commit|label|oneline)>)"

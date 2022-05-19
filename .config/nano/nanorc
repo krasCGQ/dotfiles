@@ -250,6 +250,7 @@ include "/usr/share/nano/*.nanorc"
 ## In /usr/share/nano/extra/ you can find some syntaxes that are
 ## specific for certain distros or for some less common languages.
 include "/usr/share/nano-syntax-highlighting/*.nanorc"
+include "~/.config/nano/syntax-highlighting/*.nanorc"
 
 
 ## If <Tab> should always produce four spaces when editing a Python file,

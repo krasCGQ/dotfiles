@@ -1,0 +1,14 @@
+# This code is free software; you can redistribute it and/or modify it under
+# the terms of the new BSD License.
+#
+# Copyright (c) 2010, Sebastian Staudt
+# Copyright (C) 2022 Albert I (krasCGQ)
+
+syntax "git-config" "git(config|modules)$|\.git/config$"
+
+color red           "\<(true|false)\>"
+color brightcyan    "^[[:space:]]*[^=]*="
+color brightmagenta "^[[:space:]]*\[.*\]$"
+color yellow        ""(\\.|[^"])*"|'(\\.|[^'])*'"
+color brightyellow  "(^|[[:space:]])#([^{].*)?$"
+color ,green        "[[:space:]]+$"

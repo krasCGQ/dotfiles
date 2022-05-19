@@ -1,0 +1,43 @@
+# This code is free software; you can redistribute it and/or modify it under
+# the terms of the new BSD License.
+#
+# Copyright (c) 2010, Sebastian Staudt
+# Copyright (C) 2022 Albert I (krasCGQ)
+
+# A nano configuration file to enable syntax highlighting of some Git specific
+# files with the GNU nano text editor (http://www.nano-editor.org)
+#
+syntax "git-commit" "COMMIT_EDITMSG|TAG_EDITMSG"
+
+# Commit message
+color white ".*"
+
+# Comments
+color brightyellow "^#.*"
+
+# Untracked filenames
+color white "^#	.*"
+
+# Files changes
+color white       "#[[:space:]](deleted|modified|new file|renamed|typechange):[[:space:]].*"
+color red         "#[[:space:]]deleted:"
+color green       "#[[:space:]]modified:"
+color brightgreen "#[[:space:]]new file:"
+color brightblue  "#[[:space:]]renamed:"
+color cyan        "#[[:space:]]typechange:"
+
+color brightmagenta "^# (Changes.*|Untracked files)[:]"
+color brightred     "^# Your branch is up to date with '[^']+"
+color brightyellow  "^# Your branch is up to date with"
+color brightred     "^# Your branch and '[^']+"
+color brightyellow  "^# Your branch and '"
+color brightred     "^# Your branch is behind '[^']+"
+color brightyellow  "^# Your branch is behind '"
+color brightcyan    "^# On branch [^ ]+"
+color brightyellow  "^# On branch"
+
+# Recolor hash symbols
+color brightyellow "^#"
+
+# Trailing spaces (+LINT is not ok, git uses tabs)
+color ,green "[[:space:]]+$"
