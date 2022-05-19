@@ -6,8 +6,6 @@
 
 # Compiler cache
 USE_CCACHE=1
-CCACHE_CONFIGPATH=/home/krascgq/.ccache/ccache.conf
-CCACHE_DIR=/mnt/ccache
 CCACHE_EXEC=/usr/bin/ccache
 CCACHE_NOCOMPRESS=
 
