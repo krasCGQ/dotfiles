@@ -240,7 +240,7 @@ set wordbounds
 ## For all details, see 'man nanorc', section SYNTAX HIGHLIGHTING.
 
 ## To include most of the existing syntax definitions, you can do:
-# include "/usr/share/nano/*.nanorc"
+include "/usr/share/nano/*.nanorc"
 
 ## Or you can select just the ones you need.  For example:
 # include "/usr/share/nano/html.nanorc"
@@ -250,18 +250,6 @@ set wordbounds
 ## In /usr/share/nano/extra/ you can find some syntaxes that are
 ## specific for certain distros or for some less common languages.
 include "/usr/share/nano-syntax-highlighting/*.nanorc"
-include "/usr/share/nano/autoconf.nanorc"
-include "/usr/share/nano/changelog.nanorc"
-include "/usr/share/nano/default.nanorc"
-include "/usr/share/nano/elisp.nanorc"
-include "/usr/share/nano/extra/ada.nanorc"
-include "/usr/share/nano/extra/povray.nanorc"
-include "/usr/share/nano/extra/spec.nanorc"
-include "/usr/share/nano/guile.nanorc"
-include "/usr/share/nano/nanohelp.nanorc"
-include "/usr/share/nano/nftables.nanorc"
-include "/usr/share/nano/objc.nanorc"
-include "/usr/share/nano/texinfo.nanorc"
 
 
 ## If <Tab> should always produce four spaces when editing a Python file,
