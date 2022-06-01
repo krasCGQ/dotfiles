@@ -27,3 +27,7 @@ WINEDEBUG=-all
 
 # Zstandard: default compression level override
 ZSTD_CLEVEL=20
+
+# We need a custom security policy for jack-server and Java 8 since JDK 8u292
+# Don't export this by default to _JAVA_OPTIONS since it's a weakening measure
+_JAVA_OPTIONS_JACK='-Djava.security.properties=/home/krascgq/.files/configs/jack-server.properties'
