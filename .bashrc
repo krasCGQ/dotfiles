@@ -1,30 +1,37 @@
-# shellcheck shell=bash
-# ~/.bashrc
+#!/hint/bash
+#
+# SPDX-License-Identifier: Unlicense
+#
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# Init Powerline
-powerline-daemon -q
-POWERLINE_BASH_CONTINUATION=1
-POWERLINE_BASH_SELECT=1
-. /usr/share/powerline/bindings/bash/powerline.sh
+# Which shell are we running?
+# Save it early before sourcing any additional scripts as $0 may change
+CURRENT_SHELL=$0
 
-alias dir='exa --color=auto'
-alias ls='exa --color=auto'
-alias vdir='exa -H -g -l --color=auto'
+# Control how many last lines of history to keep.
+# Debian defaults to 2000 in their ~/.bashrc
+HISTFILESIZE=2000
 
-alias egrep='grep -E --color=auto'
-alias fgrep='grep -F --color=auto'
-alias grep='grep --color=auto'
+# Control how Bash should handle history.
+# ignoreboth will ignore all proceeding repetitions (ignoredups) as well as
+# commands that start with spaces (ignorespace) (this is Debian's default)
+HISTCONTROL=ignoreboth
 
-# Source my environment setup
-[[ $(</etc/hostname) == grozny ]] && TYPE=server || TYPE=notebook
-# shellcheck source=/dev/null
-. "${HOME}"/.files/scripts/env/$TYPE
+## Enable a set of shell options.
+## Some are Debian defaults
+# autocd: Automatically change directory if target is a folder
+# histappend: Append to instead of overwriting history file
+# globstar: Using ** will match all files and directories and their children
+shopt -s autocd histappend globstar
 
-# Additionally, source some snippets
-for SNIPPET in tg_sendinline zipsigner; do
-    # shellcheck source=/dev/null
-    . "${HOME}"/.files/scripts/snippets/${SNIPPET}
-done
+# Exporting these serve no real purpose other than satisfying shellcheck
+export HISTCONTROL HISTFILESIZE
+
+# Include shared shell configuration
+# shellcheck source=SCRIPTDIR/.shrc-common
+source "$HOME"/.files/.shrc-common
+
+# Unset CURRENT_SHELL as we don't need it anymore
+unset CURRENT_SHELL

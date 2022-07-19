@@ -1,0 +1,109 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "blocks": [
+    {
+      "alignment": "left",
+      "segments": [
+        {
+          "foreground": "white",
+          "properties": {
+            "fetch_version": false
+          },
+          "style": "plain",
+          "template": "({{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }})",
+          "type": "python"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "foreground": "#c83089",
+          "style": "plain",
+          "template": "<b>\ue602</b> ",
+          "type": "text"
+        },
+        {
+          "foreground": "#ff0000",
+          "style": "plain",
+          "template": "{{ if gt .Code 0 }}<b>{{ .Code }}</b>{{ end }} ",
+          "type": "exit"
+        },
+        {
+          "foreground": "#86c1da",
+          "style": "plain",
+          "template": "<b>{{ .Shell }}</b> ",
+          "type": "text"
+        },
+        {
+          "foreground": "#d861a6",
+          "style": "plain",
+          "template": "<b>\ue602</b> ",
+          "type": "text"
+        },
+        {
+          "foreground": "red",
+          "style": "plain",
+          "template": " % ",
+          "type": "root"
+        },
+        {
+          "style": "plain",
+          "template": "<#005bbb><b>{{ .UserName }}</b></><white>@</><#ffd500><b>{{ .HostName }}</b></> ",
+          "type": "session"
+        },
+        {
+          //"foreground": "#c7ea93",
+          "foreground": "#da3636",
+          "properties": {
+            "style": "unique"
+          },
+          "style": "plain",
+          "template": "<white>in </><b>{{ .Path }}</b> ",
+          "type": "path"
+        },
+        {
+          "foreground": "#3ab038",
+          "style": "plain",
+          "template": "<white>on</> <b>{{ .HEAD }}</b> ",
+          "type": "git"
+        },
+        {
+          "foreground": "white",
+          "properties": {
+            "style": "round",
+            "threshold": 3000 // 3 seconds
+          },
+          "style": "plain",
+          "template": "took <#2adcd3><b>{{ .FormattedMs }}</b></> ",
+          "type": "executiontime"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "foreground": "lightGreen",
+          "foreground_templates": [
+            "{{ if gt .Code 0 }}#ff0000{{ end }}"
+          ],
+          "properties": {
+            "always_enabled": true
+          },
+          "style": "powerline",
+          "template": "\u279c",
+          "type": "exit"
+        }
+      ],
+      "type": "prompt"
+    }
+  ],
+  "final_space": true,
+  "version": 2
+}

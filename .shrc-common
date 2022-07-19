@@ -1,0 +1,68 @@
+#!/hint/bash
+#
+# SPDX-License-Identifer: Unlicense
+#
+
+# Determine which additional environment setup to load
+HOST_NAME=$(</etc/hostname)
+[[ $HOST_NAME == "harutsuki" || $HOST_NAME == "indomptable" ]] && TYPE=notebook || TYPE=server
+unset HOST_NAME
+
+# Control how many last lines of history to remember
+HISTSIZE=1000
+
+# Disable virtualenv marker when sourcing activation script.
+# Most shell prompts have their own indicator for this
+VIRTUAL_ENV_DISABLE_PROMPT=true
+
+# Alter Sheldon's default config/lock files to allow coexistence
+if [[ $CURRENT_SHELL == "bash" || $CURRENT_SHELL == "zsh" ]]; then
+    SHELDON_CONFIG_FILE=$HOME/.config/sheldon/plugins.$CURRENT_SHELL.toml
+    SHELDON_LOCK_FILE=$HOME/.local/share/sheldon/config.$CURRENT_SHELL.lock
+fi
+
+# Enable extended coloring for supported CLI apps.
+# This is modified from Debian's original logic in order to satisfy shellcheck
+test -r "$HOME"/.dircolors && DIR_COLORS=1
+eval "$(dircolors -b ${DIR_COLORS:+"$HOME"/.dircolors})" && unset DIR_COLORS
+
+# Colored GCC warnings and errors (from Debian)
+GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+# Use exa for GNU ls replacement, while mimicking the latter.
+# Exa defaults to use terminal colors automatically
+alias dir='exa'
+alias ls='exa'
+alias vdir='exa -H -g -l'
+
+# Avoid using egrep and fgrep directly for grep aliases.
+# Automatic coloring matches Debian's ~/.bashrc
+alias egrep='grep -E --color=auto'
+alias fgrep='grep -F --color=auto'
+alias grep='grep --color=auto'
+
+# Confirm before overwriting or deleting files (Debian defaults).
+# Also preserve timestamp by default when copying files
+alias cp='cp --preserve=timestamp -i'
+alias mv='mv -i'
+alias rm='rm -i'
+
+# Source my additional environment setup.
+# Note that there's no definitive way to allow shellcheck to even simply check
+# whether the mentioned script exists or not, so this needs to be made no-op
+# shellcheck source=/dev/null
+source "$HOME"/.files/scripts/env/$TYPE && unset TYPE
+
+# Exporting these serve no real purpose other than satisfying shellcheck
+export GCC_COLORS HISTSIZE VIRTUAL_ENV_DISABLE_PROMPT
+[[ $CURRENT_SHELL == "bash" || $CURRENT_SHELL == "zsh" ]] &&
+    export SHELDON_CONFIG_FILE SHELDON_LOCK_FILE
+
+# Initialize oh-my-posh only after all common inclusions, just before Sheldon
+test -n $(command -v oh-my-posh) &&
+    eval "$(oh-my-posh init "$CURRENT_SHELL" --config "$HOME"/.files/.config.omp.json)"
+
+# Source shell plugins, as defined in Sheldon config file
+if [[ $CURRENT_SHELL == "bash" || $CURRENT_SHELL == "zsh" ]]; then
+    [[ -n $(command -v sheldon) && -r "$SHELDON_CONFIG_FILE" ]] && eval "$(sheldon source)"
+fi
