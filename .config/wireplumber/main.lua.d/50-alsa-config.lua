@@ -119,6 +119,27 @@ alsa_monitor.rules = {
       --["session.suspend-timeout-seconds"] = 5,  -- 0 disables suspend
     },
   },
+  -- Begin rule changes for built-in speaker
+  {
+    matches = {
+      {
+        -- Match both input and output of the built-in speaker (same support)
+        { "node.name", "matches", "*.pci-0000_00_1f.3.*" },
+      },
+    },
+    apply_properties = {
+      -- Always open device with 24-bit stereo @ 48 kHz profile
+      ["audio.channels"] = 2,
+      ["audio.format"] = "S24_3LE",
+      ["audio.rate"] = 48000,
+      -- Supported sample rates as obtained from procfs
+      ["audio.allowed-rates"] = "44100,48000",
+      -- PCM interrupt will be generated every ~100 ms for target profile above.
+      -- See https://www.alsa-project.org/main/index.php/FramesPeriods for details
+      ["api.alsa.period-size"] = 14400,
+    },
+  },
+  -- End rule changes for built-in speaker
   -- Begin rule changes for USB DAC
   {
     matches = {
