@@ -102,8 +102,10 @@ alsa_monitor.rules = {
       --["priority.driver"]        = 100,
       --["priority.session"]       = 100,
       --["node.pause-on-idle"]     = false,
-      --["resample.quality"]       = 4,
-      --["channelmix.normalize"]   = false,
+      -- Use highest resampling quality possible
+      ["resample.quality"]         = 15,
+      -- Ensure things don't go awry with processing
+      ["channelmix.normalize"]     = true,
       --["channelmix.mix-lfe"]     = false,
       --["audio.channels"]         = 2,
       --["audio.format"]           = "S16LE",
@@ -150,10 +152,6 @@ alsa_monitor.rules = {
       },
     },
     apply_properties = {
-      -- Use highest resampling quality
-      ["resample.quality"] = 15,
-      -- Ensure things don't go awry with processing
-      ["channelmix.normalize"] = true,
       -- Always open device with following format and sample rate
       ["audio.format"] = "S32LE",
       ["audio.rate"] = 384000,
