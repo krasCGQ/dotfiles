@@ -136,7 +136,7 @@ alsa_monitor.rules = {
       ["audio.allowed-rates"] = "44100,48000",
       -- PCM interrupt will be generated every ~100 ms for target profile above.
       -- See https://www.alsa-project.org/main/index.php/FramesPeriods for details
-      ["api.alsa.period-size"] = 14400,
+      ["api.alsa.period-size"] = 9600,
     },
   },
   -- End rule changes for built-in speaker
