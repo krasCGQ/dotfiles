@@ -17,8 +17,8 @@ VIRTUAL_ENV_DISABLE_PROMPT=true
 
 # Alter Sheldon's default config/lock files to allow coexistence
 if [[ $CURRENT_SHELL == "bash" || $CURRENT_SHELL == "zsh" ]]; then
-    SHELDON_CONFIG_FILE=$HOME/.config/sheldon/plugins.$CURRENT_SHELL.toml
-    SHELDON_LOCK_FILE=$HOME/.local/share/sheldon/config.$CURRENT_SHELL.lock
+    SHELDON_CONFIG_FILE=${SHELDON_CONFIG_DIR:-$HOME/.config/sheldon}/plugins.$CURRENT_SHELL.toml
+    SHELDON_LOCK_FILE=${SHELDON_DATA_DIR:-$HOME/.local/share/sheldon}/config.$CURRENT_SHELL.lock
 fi
 
 # Enable extended coloring for supported CLI apps.
@@ -59,10 +59,10 @@ export GCC_COLORS HISTSIZE VIRTUAL_ENV_DISABLE_PROMPT
     export SHELDON_CONFIG_FILE SHELDON_LOCK_FILE
 
 # Initialize oh-my-posh only after all common inclusions, just before Sheldon
-test -n $(command -v oh-my-posh) &&
+test -n "$(command -v oh-my-posh)" &&
     eval "$(oh-my-posh init "$CURRENT_SHELL" --config "$HOME"/.files/.config.omp.json)"
 
 # Source shell plugins, as defined in Sheldon config file
 if [[ $CURRENT_SHELL == "bash" || $CURRENT_SHELL == "zsh" ]]; then
-    [[ -n $(command -v sheldon) && -r "$SHELDON_CONFIG_FILE" ]] && eval "$(sheldon source)"
+    [[ -n $(command -v sheldon) && -r $SHELDON_CONFIG_FILE ]] && eval "$(sheldon source)"
 fi
