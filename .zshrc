@@ -16,6 +16,7 @@
 
 # Which shell are we running?
 # Save it early before sourcing any additional scripts as $0 may change
+# shellcheck disable=SC2034
 CURRENT_SHELL=$0
 
 # Tell Zsh where to save history of commands.

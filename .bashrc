@@ -8,6 +8,7 @@
 
 # Which shell are we running?
 # Save it early before sourcing any additional scripts as $0 may change
+# shellcheck disable=SC2034
 CURRENT_SHELL=$0
 
 # Control how many last lines of history to keep.
