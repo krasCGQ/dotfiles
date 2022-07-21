@@ -3,9 +3,6 @@
 
 # <file system> <dir> <type> <options> <dump> <pass>
 
-## /proc, for explicit hidepid=2
-proc                                         /proc    proc    nosuid,nodev,noexec,gid=proc,hidepid=2    0    0
-
 ## /dev/nvme0n1p2 -> /dev/mapper/nvme0n1_crypt
 # Root partition has intentionally left subvolid= undefined, to allow easier switching to older
 # snapshots in case something went wrong during system updates.
