@@ -173,16 +173,16 @@ alsa_monitor.rules = {
       },
     },
     apply_properties = {
-      -- Always open device with 32-bit stereo @ 384 kHz profile
+      -- Always open device with 32-bit stereo @ 192 kHz profile
       ["audio.channels"] = 2,
       ["audio.format"] = "S32_LE",
-      ["audio.rate"] = 384000,
+      ["audio.rate"] = 192000,
       -- Supported sample rates as obtained from procfs
       ["audio.allowed-rates"] = "8000,16000,32000,44100,48000,96000,192000,384000",
       -- PCM interrupt will be generated every ~100 ms for target profile above.
       -- See https://www.alsa-project.org/main/index.php/FramesPeriods for details
-      ["api.alsa.period-size"] = 38400,
-      -- Disable batch device tweaks to resolve audio cracking on 384 kHz
+      ["api.alsa.period-size"] = 19200,
+      -- Disable batch tweaks for devices that might perform better without it
       ["api.alsa.disable-batch"] = true,
     },
   },
