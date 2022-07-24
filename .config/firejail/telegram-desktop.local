@@ -1,2 +1,7 @@
 # Unblock standard user directories
 include unblock-xdg.inc
+
+# Third party clients that share same executable name but different data path
+noblacklist ${HOME}/.local/share/64Gram
+mkdir ${HOME}/.local/share/64Gram
+whitelist ${HOME}/.local/share/64Gram
