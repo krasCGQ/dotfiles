@@ -29,11 +29,18 @@ eval "$(dircolors -b ${DIR_COLORS:+"$HOME"/.dircolors})" && unset DIR_COLORS
 # Colored GCC warnings and errors (from Debian)
 GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# Use exa for GNU ls replacement, while mimicking the latter.
-# Exa defaults to use terminal colors automatically
-alias dir='exa'
-alias ls='exa'
-alias vdir='exa -H -g -l'
+if [[ $(command -v exa) ]]; then
+    # Use exa for GNU ls replacement, while mimicking the latter.
+    # Exa defaults to use terminal colors automatically
+    alias dir='exa'
+    alias ls='exa'
+    alias vdir='exa -H -g -l'
+else
+    # Fallback to GNU ls, enabling terminal colors when supported
+    alias dir='dir --color=auto'
+    alias ls='ls --color=auto'
+    alias vdir='vdir --color=auto'
+fi
 
 # Avoid using egrep and fgrep directly for grep aliases.
 # Automatic coloring matches Debian's ~/.bashrc
