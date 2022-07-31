@@ -1,8 +1,18 @@
 # Unblock standard user directories
 include unblock-xdg.inc
 
+# Required for some items in Desktop section, possibly overriding modified entry
+ignore read-only ${HOME}/.local/share/applications
+
+# Let the app write auto-start entry (entry needs manual intervention afterwards)
+noblacklist ${HOME}/.config/autostart
+read-write ${HOME}/.config/autostart
+
 # Allow accessing notifications/secrets service
 ignore dbus-user none
 dbus-user filter
 dbus-user.talk org.freedesktop.Notifications
 dbus-user.talk org.freedesktop.secrets
+
+# If allow-tray is enabled, let it communicate with StatusNotifierItem API
+?ALLOW_TRAY: dbus-user.talk org.kde.StatusNotifierWatcher
