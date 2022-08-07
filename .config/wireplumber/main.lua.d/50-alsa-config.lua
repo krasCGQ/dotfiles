@@ -179,9 +179,9 @@ alsa_monitor.rules = {
       ["audio.rate"] = 192000,
       -- Supported sample rates as obtained from procfs
       ["audio.allowed-rates"] = "8000,16000,32000,44100,48000,96000,192000,384000",
-      -- PCM interrupt will be generated every ~100 ms for target profile above.
+      -- PCM interrupt will be generated every ~80 ms for target profile above.
       -- See https://www.alsa-project.org/main/index.php/FramesPeriods for details
-      ["api.alsa.period-size"] = 19200,
+      ["api.alsa.period-size"] = 15360,
       -- Disable batch tweaks for devices that might perform better without it
       ["api.alsa.disable-batch"] = true,
     },
