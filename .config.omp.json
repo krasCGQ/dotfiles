@@ -96,8 +96,8 @@
           "properties": {
             "always_enabled": true
           },
-          "style": "powerline",
-          "template": "\u279c",
+          "style": "plain",
+          "template": "$",
           "type": "exit"
         }
       ],
