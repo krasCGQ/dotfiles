@@ -58,7 +58,8 @@ alias rm='rm -i'
 # Note that there's no definitive way to allow shellcheck to even simply check
 # whether the mentioned script exists or not, so this needs to be made no-op
 # shellcheck source=/dev/null
-source "$HOME"/.files/scripts/env/$TYPE && unset TYPE
+[[ -f $HOME/.files/scripts/env/$TYPE ]] && source "$HOME"/.files/scripts/env/$TYPE
+unset TYPE
 
 # Exporting these serve no real purpose other than satisfying shellcheck
 export GCC_COLORS HISTSIZE VIRTUAL_ENV_DISABLE_PROMPT
