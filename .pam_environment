@@ -15,9 +15,6 @@ LIBVA_DRIVER_NAME=iHD
 # Qt: Use Kvantum 
 QT_STYLE_OVERRIDE=Kvantum
 
-# LibreOffice: Force GTK3+KDE5 VCL UI to honor Plasma's scaling
-SAL_USE_VCLPLUGIN=gtk3_kde5
-
 # List of Vulkan ICDs to load; x86_64 > i686
 # Don't export this systemwide as VK_ICD_FILENAMES; do it ourselves
 VK_ICD_FILENAMES2=/usr/share/vulkan/icd.d/radeon_icd.x86_64.json:/usr/share/vulkan/icd.d/radeon_icd.i686.json:/usr/share/vulkan/icd.d/intel_icd.x86_64.json:/usr/share/vulkan/icd.d/intel_icd.i686.json
