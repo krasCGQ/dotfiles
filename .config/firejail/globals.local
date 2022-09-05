@@ -2,9 +2,3 @@
 # For apps that segfault, this can be excluded so it falls back to reduced one
 # currently loaded from /etc/ld.so.preload
 env LD_PRELOAD=/usr/lib/libhardened_malloc.so
-
-# Jailed apps will inherit firejail's preloading state, which makes loading
-# contents of /etc/ld.so.preload again unnecessary. Practically, blacklisting
-# ld.so.preload would be the appropriate one. However, doing so breaks many
-# app/binary profiles that specifically whitelist it with private-etc
-blacklist /usr/lib/libhardened_malloc-light.so
