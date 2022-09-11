@@ -68,7 +68,7 @@ export GCC_COLORS HISTSIZE VIRTUAL_ENV_DISABLE_PROMPT
 
 # Initialize oh-my-posh only after all common inclusions, just before Sheldon
 test -n "$(command -v oh-my-posh)" &&
-    eval "$(oh-my-posh init "$CURRENT_SHELL" --config "$HOME"/.files/.config.omp.json)"
+    eval "$(oh-my-posh prompt init "$CURRENT_SHELL" --config "$HOME"/.files/.config.omp.json)"
 
 # Source shell plugins, as defined in Sheldon config file
 if [[ $CURRENT_SHELL == "bash" || $CURRENT_SHELL == "zsh" ]]; then
