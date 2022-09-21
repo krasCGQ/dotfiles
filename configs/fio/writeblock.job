@@ -1,0 +1,8 @@
+[global]
+include common.job
+
+[write-and-verify]
+blocksize=1m
+experimental_verify=1
+readwrite=write
+verify=xxhash

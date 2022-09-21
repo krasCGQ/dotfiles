@@ -1,0 +1,27 @@
+[global]
+include common.job
+time_based
+
+[seq_write_4mb_1min]
+description="Do 4M sequential write for a minute"
+blocksize=4m
+runtime=1m
+readwrite=write
+
+[seq_read_4mb_1min]
+description="Do 4M sequential read for a minute"
+blocksize=4m
+runtime=1m
+readwrite=read
+
+[rand_write_4kb_2min]
+description="Do 4K random write for 2 minutes"
+blocksize=4k
+runtime=2m
+readwrite=randwrite
+
+[rand_read_4kb_2min]
+description="Do 4K random read for 2 minutes"
+blocksize=4k
+runtime=2m
+readwrite=randread
