@@ -16,7 +16,7 @@
           "foreground": "#ff0000",
           "style": "plain",
           "_comment": "Whitelist SIGPIPE from being shown, as they aren't real errors to even make any concern.",
-          "template": "{{ if or (gt .Code 0) (ne .Code 141) }}<b>{{ .Code }}</b>{{ end }} ",
+          "template": "{{ if and (gt .Code 0) (ne .Code 141) }}<b>{{ .Code }}</b>{{ end }} ",
           "type": "exit"
         },
         {
