@@ -71,10 +71,10 @@ export GCC_COLORS HISTSIZE VIRTUAL_ENV_DISABLE_PROMPT
     export SHELDON_CONFIG_FILE SHELDON_LOCK_FILE
 
 # Initialize oh-my-posh only after all common inclusions, just before Sheldon
-test -n "$(command -v oh-my-posh)" &&
+command -v oh-my-posh >/dev/null &&
     eval "$(oh-my-posh prompt init "$CURRENT_SHELL" --config "$HOME"/.files/.config.omp.json)"
 
 # Source shell plugins, as defined in Sheldon config file
-if [[ $CURRENT_SHELL == "bash" || $CURRENT_SHELL == "zsh" ]]; then
-    [[ -n $(command -v sheldon) && -r $SHELDON_CONFIG_FILE ]] && eval "$(sheldon source)"
+if [[ $CURRENT_SHELL == "bash" || $CURRENT_SHELL == "zsh" ]] && command -v sheldon >/dev/null; then
+    test -r $SHELDON_CONFIG_FILE && eval "$(sheldon source)"
 fi
