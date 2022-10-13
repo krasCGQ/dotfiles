@@ -29,6 +29,10 @@ eval "$(dircolors -b ${DIR_COLORS:+"$HOME"/.dircolors})" && unset DIR_COLORS
 # Colored GCC warnings and errors (from Debian)
 GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
+# Replicate what pam_env.so will normally do if we log into TTY/PTY or whatever...
+[[ -f $HOME/.pam_environment && -z $DISPLAY ]] &&
+    eval "$(grep -v "^#" "$HOME"/.pam_environment | sed '/^$/d' | sed 's/^/export /g')"
+
 if [[ $(command -v exa) ]]; then
     # Use exa for GNU ls replacement, while mimicking the latter.
     # Exa defaults to use terminal colors automatically
