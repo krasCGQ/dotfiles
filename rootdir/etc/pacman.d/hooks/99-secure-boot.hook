@@ -2,7 +2,9 @@
 Operation = Install
 Operation = Upgrade
 Type = File
-Target = boot/vmlinuz-*
+# Explicitly re-sign kernel images when booster is updated
+Target = usr/bin/booster
+# Location of kernel images, which get copied by initramfs generator
 Target = usr/lib/modules/*/vmlinuz
 
 [Action]
