@@ -15,4 +15,8 @@ dbus-user.talk org.freedesktop.Notifications
 dbus-user.talk org.freedesktop.secrets
 
 # If allow-tray is enabled, let it communicate with StatusNotifierItem API
+?ALLOW_TRAY: dbus-user.own org.kde.*
 ?ALLOW_TRAY: dbus-user.talk org.kde.StatusNotifierWatcher
+
+# Needed to avoid launching a new session when there's already one running
+join-or-start tutanota-desktop
