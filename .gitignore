@@ -1,2 +1,2 @@
-# due to recent events of git ransom; store .gitconfig encrypted
+bin/
 .gitconfig
