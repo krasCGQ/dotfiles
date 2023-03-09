@@ -3,37 +3,44 @@
 
 # <file system> <dir> <type> <options> <dump> <pass>
 
+## /dev/nvme0n1p1
+UUID=71D7-8D5B                               /boot    vfat    nosuid,nodev,noexec,noatime,discard    0    2
+
+
 ## /dev/nvme0n1p2 -> /dev/mapper/nvme0n1_crypt
 # Root partition has intentionally left subvolid= undefined, to allow easier switching to older
-# snapshots in case something went wrong during system updates.
-UUID=e895a534-d54e-48e4-8f6b-3b893f5dcc5a    /                 btrfs    nodev,noatime,compress-force=zstd:2,discard=async,autodefrag,subvol=@root                                    0    0
-# Exclude /var/{cache,crash,log} from being included in full system snapshot. This ensures that we
-# can retain logs whenever the root partition is switched to an older snapshot in order to debug
-# issues, as well as mounting these paths with maximum possible security measures.
-UUID=e895a534-d54e-48e4-8f6b-3b893f5dcc5a    /var/log          btrfs    nosuid,nodev,noexec,noatime,compress-force=zstd:2,discard=async,autodefrag,subvolid=257,subvol=@var_log      0    0
-UUID=e895a534-d54e-48e4-8f6b-3b893f5dcc5a    /var/cache        btrfs    nosuid,nodev,noexec,noatime,compress-force=zstd:2,discard=async,autodefrag,subvolid=258,subvol=@var_cache    0    0
-UUID=e895a534-d54e-48e4-8f6b-3b893f5dcc5a    /var/crash        btrfs    nosuid,nodev,noexec,noatime,compress-force=zstd:2,discard=async,autodefrag,subvolid=259,subvol=@var_crash    0    0
-# All other paths that don't need specific comment.
-UUID=e895a534-d54e-48e4-8f6b-3b893f5dcc5a    /mnt/aosp/nvme    btrfs    nosuid,nodev,noatime,compress-force=zstd:2,discard=async,autodefrag,subvolid=260,subvol=@aosp_src            0    0
+# snapshots in case something went wrong during system updates. suid is needed for root always.
+UUID=e895a534-d54e-48e4-8f6b-3b893f5dcc5a    /                     btrfs    nodev,noatime,compress-force=zstd:2,discard=async,autodefrag,subvol=@root                                    0    0
 
-## /dev/nvme0n1p1
-UUID=D3C4-C591                               /boot    vfat    nosuid,nodev,noexec,discard    0    2
+# systemd auto-creates these subvolumes for nspawn if root filesystem is Btrfs. dev permission for
+# these partitions is needed as well in addition to suid.
+UUID=e895a534-d54e-48e4-8f6b-3b893f5dcc5a    /var/lib/machines     btrfs    noatime,compress-force=zstd:2,discard=async,autodefrag,subvolid=270,subvol=@machines                         0    0
+UUID=e895a534-d54e-48e4-8f6b-3b893f5dcc5a    /var/lib/portables    btrfs    noatime,compress-force=zstd:2,discard=async,autodefrag,subvolid=279,subvol=@portables                        0    0
+
+# Exclude /var/{cache,log} from being included in full system snapshot. This ensures that we can
+# retain logs whenever the root partition is switched to an older snapshot in order to debug issues,
+# as well as mounting these paths with maximum possible security measures.
+UUID=e895a534-d54e-48e4-8f6b-3b893f5dcc5a    /var/cache            btrfs    nosuid,nodev,noexec,noatime,compress-force=zstd:2,discard=async,autodefrag,subvolid=277,subvol=@var_cache    0    0
+UUID=e895a534-d54e-48e4-8f6b-3b893f5dcc5a    /var/log              btrfs    nosuid,nodev,noexec,noatime,compress-force=zstd:2,discard=async,autodefrag,subvolid=278,subvol=@var_log      0    0
+
+# We don't care if these partitions fail to mount, so don't bail out entire boot.
+# Where to store AOSP sources on the NVMe.
+UUID=e895a534-d54e-48e4-8f6b-3b893f5dcc5a    /mnt/aosp/nvme        btrfs    nosuid,nodev,noatime,compress-force=zstd:2,discard=async,autodefrag,subvolid=260,subvol=@aosp_src,nofail     0    0
+
 
 ## /dev/sda -> /dev/mapper/sda_crypt
-# Practically, only at first attempt of mounting a Btrfs volume will require supplying full flags.
-# However, it seems like systemd will mount subvolumes in whatever order they like, so we specify
-# our mount flags for each subvolume mounts.
-UUID=f908abfd-4679-400a-b944-7c4f0c4cb096    /home                      btrfs    nosuid,nodev,noexec,noatime,compress-force=zstd:2,discard=async,autodefrag,subvolid=256,subvol=@home              0    0
-UUID=f908abfd-4679-400a-b944-7c4f0c4cb096    /var/lib/libvirt/images    btrfs    nosuid,nodev,noexec,noatime,compress-force=zstd:2,discard=async,autodefrag,subvolid=257,subvol=@libvirt_images    0    0
-UUID=f908abfd-4679-400a-b944-7c4f0c4cb096    /mnt/aosp/out              btrfs    nosuid,nodev,noatime,compress-force=zstd:2,discard=async,autodefrag,subvolid=258,subvol=@aosp_out                 0    0
-UUID=f908abfd-4679-400a-b944-7c4f0c4cb096    /etc/cryptsetup-keys.d     btrfs    nosuid,nodev,noexec,noatime,compress-force=zstd:2,discard=async,autodefrag,subvolid=259,subvol=@cryptsetup        0    0
-UUID=f908abfd-4679-400a-b944-7c4f0c4cb096    /mnt/sources               btrfs    nodev,noatime,compress-force=zstd:2,discard=async,autodefrag,subvolid=608,subvol=@sources                         0    0
-UUID=f908abfd-4679-400a-b944-7c4f0c4cb096    /mnt/wine                  btrfs    nosuid,nodev,noatime,compress-force=zstd:2,discard=async,autodefrag,subvolid=610,subvol=@wineprefix               0    0
-UUID=f908abfd-4679-400a-b944-7c4f0c4cb096    /mnt/aosp/sata             btrfs    nosuid,nodev,noatime,compress-force=zstd:2,discard=async,autodefrag,subvolid=612,subvol=@aosp_src                 0    0
-# Failing nest-mounted partitions (except over root) should never prevent system from completing
-# its boot process. This is to ensure that we can still have live system to troubleshoot something
-# that isn't as critical as when partitions such as /home fail to mount.
-UUID=f908abfd-4679-400a-b944-7c4f0c4cb096    /home/krascgq/.cache       btrfs    nosuid,nodev,noatime,compress-force=zstd:2,discard=async,autodefrag,subvolid=609,subvol=@user_cache,nofail        0    0
-UUID=f908abfd-4679-400a-b944-7c4f0c4cb096    /home/krascgq/.var/app     btrfs    nosuid,nodev,noatime,compress-force=zstd:2,discard=async,autodefrag,subvolid=611,subvol=@user_flatpak,nofail      0    0
-UUID=f908abfd-4679-400a-b944-7c4f0c4cb096    /home/krascgq/.local       btrfs    nosuid,nodev,noatime,compress-force=zstd:2,discard=async,autodefrag,subvolid=646,subvol=@user_local,nofail        0    0
-UUID=f908abfd-4679-400a-b944-7c4f0c4cb096    /home/krascgq/.atom        btrfs    nosuid,nodev,noatime,compress-force=zstd:2,discard=async,autodefrag,subvolid=647,subvol=@user_atom,nofail         0    0
+# Defaults to mount with noexec, with separate subvolumes for local directories that require exec
+# permissions to be able to run properly, especially everything on ~/.local as well as Flatpak.
+UUID=f908abfd-4679-400a-b944-7c4f0c4cb096    /home                      btrfs    nosuid,nodev,noexec,noatime,compress-force=zstd:2,discard=async,autodefrag,subvolid=256,subvol=@home                   0    0
+UUID=f908abfd-4679-400a-b944-7c4f0c4cb096    /var/lib/libvirt/images    btrfs    nosuid,nodev,noexec,noatime,compress-force=zstd:2,discard=async,autodefrag,subvolid=257,subvol=@libvirt_images         0    0
+UUID=f908abfd-4679-400a-b944-7c4f0c4cb096    /home/krascgq/.local       btrfs    nosuid,nodev,noatime,compress-force=zstd:2,discard=async,autodefrag,subvolid=648,subvol=@user_local                    0    0
+
+# ~/.var/app, which is used by Flatpak, also needs suid permission as well as apps may be installed
+# per-user rather than the default system-wide approach.
+UUID=f908abfd-4679-400a-b944-7c4f0c4cb096    /home/krascgq/.var/app     btrfs    nodev,noatime,compress-force=zstd:2,discard=async,autodefrag,subvolid=611,subvol=@user_flatpak                         0    0
+
+# We don't care if these partitions fail to mount, so don't bail out entire boot.
+# Custom path to work with sources. suid permission is required here as well for Arch Build System.
+UUID=f908abfd-4679-400a-b944-7c4f0c4cb096    /mnt/sources               btrfs    nodev,noatime,compress-force=zstd:2,discard=async,autodefrag,subvolid=608,subvol=@sources,nofail                       0    0
+# Where to store AOSP sources on the SATA.
+UUID=f908abfd-4679-400a-b944-7c4f0c4cb096    /mnt/aosp/sata             btrfs    nosuid,nodev,noatime,compress-force=zstd:2,discard=async,autodefrag,subvolid=612,subvol=@aosp_src,nofail               0    0
