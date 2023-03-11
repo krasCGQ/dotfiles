@@ -1,0 +1,10 @@
+[Trigger]
+Operation = Upgrade
+Type = Package
+Target = systemd
+
+[Action]
+Description = Updating systemd-boot
+# systemd unit only updates systemd-boot on next boot
+Exec = /usr/bin/systemctl start systemd-boot-update.service
+When = PostTransaction
