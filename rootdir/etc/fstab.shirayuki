@@ -1,0 +1,34 @@
+# Static information about the filesystems.
+# See fstab(5) for details.
+
+# <file system> <dir> <type> <options> <dump> <pass>
+
+## /dev/nvme0n1p1
+UUID=2C38-4187                               /boot    vfat    nosuid,nodev,noexec,noatime,discard    0    2
+
+
+## /dev/nvme0n1p2 -> /dev/mapper/nvme0n1_crypt
+# Root partition has intentionally left subvolid= undefined, to allow easier switching to older
+# snapshots in case something went wrong during system updates. suid is needed for root always.
+UUID=77ca81f7-0232-40ac-a61d-437e9a1fc2df    /                         btrfs    nodev,noatime,max_inline=4096,compress-force=zstd:6,flushoncommit,discard=async,autodefrag,subvol=@root                                    0    0
+
+# systemd auto-creates these subvolumes for nspawn if root filesystem is Btrfs. dev permission for
+# these subvolumes is needed as well in addition to suid.
+UUID=77ca81f7-0232-40ac-a61d-437e9a1fc2df    /var/lib/machines         btrfs    noatime,max_inline=4096,compress-force=zstd:6,flushoncommit,discard=async,autodefrag,subvolid=261,subvol=@machines                         0    0
+UUID=77ca81f7-0232-40ac-a61d-437e9a1fc2df    /var/lib/portables        btrfs    noatime,max_inline=4096,compress-force=zstd:6,flushoncommit,discard=async,autodefrag,subvolid=260,subvol=@portables                        0    0
+
+# Exclude /var/{cache,log} from being included in full system snapshot. This ensures that we can
+# retain logs whenever the root partition is switched to an older snapshot in order to debug issues.
+UUID=77ca81f7-0232-40ac-a61d-437e9a1fc2df    /var/log                  btrfs    nosuid,nodev,noexec,noatime,max_inline=4096,compress-force=zstd:6,flushoncommit,discard=async,autodefrag,subvolid=257,subvol=@var_log      0    0
+UUID=77ca81f7-0232-40ac-a61d-437e9a1fc2df    /var/cache                btrfs    nosuid,nodev,noexec,noatime,max_inline=4096,compress-force=zstd:6,flushoncommit,discard=async,autodefrag,subvolid=258,subvol=@var_cache    0    0
+
+# Defaults to mount with noexec, with separate subvolumes for local directories that require exec
+# permissions to be able to run properly, especially everything on ~/.local as well as Flatpak.
+UUID=77ca81f7-0232-40ac-a61d-437e9a1fc2df    /home                     btrfs    nosuid,nodev,noexec,noatime,max_inline=4096,compress-force=zstd:6,flushoncommit,discard=async,autodefrag,subvolid=259,subvol=@home         0    0
+
+# Mount ~/.var/app with suid and exec permissions to allow per-user apps to be installed and run
+# by Flatpak from home directory instead of being installed system-wide.
+UUID=77ca81f7-0232-40ac-a61d-437e9a1fc2df    /home/krascgq/.var/app    btrfs    nodev,noatime,max_inline=4096,compress-force=zstd:6,flushoncommit,discard=async,autodefrag,subvolid=266,subvol=@flatpak                    0    0
+
+# Do not allow any mount failures of this general data partition to bail out the entire thing.
+UUID=77ca81f7-0232-40ac-a61d-437e9a1fc2df    /mnt/nvme0n1              btrfs    nodev,noatime,max_inline=4096,compress-force=zstd:6,flushoncommit,discard=async,autodefrag,subvolid=265,subvol=@data,nofail                0    0
