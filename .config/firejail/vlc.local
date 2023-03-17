@@ -1,2 +1,5 @@
+# Fallback to -light version pre-loaded system-wide as it currently segfaults under Wayland
+ignore env LD_PRELOAD=/usr/lib/libhardened_malloc.so
+
 # This blocks access to /dev/video* devices
 ignore private-dev
