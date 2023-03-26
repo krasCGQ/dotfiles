@@ -1,0 +1,4 @@
+# There's no reason to keep Pictures folder at bay, we might need static images for watermarking
+ignore blacklist ${PICTURES}
+whitelist ${PICTURES}
+read-only ${PICTURES}
