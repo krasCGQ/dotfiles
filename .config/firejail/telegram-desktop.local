@@ -5,3 +5,6 @@ include unblock-xdg.inc
 noblacklist ${HOME}/.local/share/64Gram
 mkdir ${HOME}/.local/share/64Gram
 whitelist ${HOME}/.local/share/64Gram
+
+# Needed so we don't spawn another client with same session
+join-or-start telegram-desktop

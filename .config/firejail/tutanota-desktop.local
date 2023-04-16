@@ -1,6 +1,9 @@
 # Unblock standard user directories
 include unblock-xdg.inc
 
+# Needed explicitly to prevent app from overwriting local desktop entries
+blacklist ${HOME}/.local/share/applications
+
 # Let the app write auto-start entry (entry needs manual intervention afterwards)
 noblacklist ${HOME}/.config/autostart
 read-write ${HOME}/.config/autostart
