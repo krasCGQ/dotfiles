@@ -1,0 +1,15 @@
+# mkinitcpio preset file for the 'linux-lts515' package
+
+ALL_config="/etc/mkinitcpio.conf"
+ALL_kver="/boot/vmlinuz-linux-lts515"
+ALL_microcode=('/boot/intel-ucode.img')
+
+PRESETS=('default' 'fallback')
+
+#default_image="/boot/initramfs-linux-lts515.img"
+default_uki="/boot/EFI/Linux/arch-linux-lts515.efi"
+default_options="--splash /usr/share/systemd/bootctl/splash-arch.bmp"
+
+#fallback_image="/boot/initramfs-linux-lts515-fallback.img"
+fallback_uki="/boot/EFI/Linux/arch-linux-lts515-fallback.efi"
+fallback_options="-S autodetect --cmdline /etc/kernel/cmdline-fallback --splash /usr/share/systemd/bootctl/splash-arch.bmp"

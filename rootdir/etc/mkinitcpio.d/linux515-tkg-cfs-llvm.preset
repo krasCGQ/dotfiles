@@ -1,0 +1,16 @@
+# mkinitcpio preset file for the 'linux515-tkg-cfs-llvm' package
+
+ALL_config="/etc/mkinitcpio.conf"
+ALL_kver="/boot/vmlinuz-linux515-tkg-cfs-llvm"
+ALL_microcode=('/boot/intel-ucode.img')
+
+# do not create fallback initramfs for this kernel
+PRESETS=('default')
+
+#default_image="/boot/initramfs-linux515-tkg-cfs-llvm.img"
+default_uki="/boot/EFI/Linux/arch-linux515-tkg-cfs-llvm.efi"
+default_options="--splash /usr/share/systemd/bootctl/splash-arch.bmp"
+
+#fallback_image="/boot/initramfs-linux515-tkg-cfs-llvm-fallback.img"
+fallback_uki="/boot/EFI/Linux/arch-linux515-tkg-cfs-llvm-fallback.efi"
+fallback_options="-S autodetect --cmdline /etc/kernel/cmdline-fallback --splash /usr/share/systemd/bootctl/splash-arch.bmp"
