@@ -1,0 +1,11 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = memtest86+-efi
+
+[Action]
+Description = Signing memtest86+ for Secure Boot...
+Exec = /usr/bin/sbsign --key /root/secureboot/current/db.key --cert /root/secureboot/current/db.crt --output /boot/memtest86+/memtest.efi /boot/memtest86+/memtest.efi
+When = PostTransaction
+Depends = sbsigntools
