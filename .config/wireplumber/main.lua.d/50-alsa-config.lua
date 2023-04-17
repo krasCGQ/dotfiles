@@ -154,12 +154,59 @@ alsa_monitor.rules = {
       --["session.suspend-timeout-seconds"] = 5,  -- 0 disables suspend
     },
   },
-  -- Begin rule changes for built-in speaker
+  -- Begin rule changes for built-in audio devices
   {
     matches = {
       {
-        -- Match both input and output of the built-in speaker (same support)
+        -- Common profile to be applied to the Realtek ALC897 audio device
         { "node.name", "matches", "*.pci-0000_00_1f.3.*" },
+        { "alsa.id", "matches", "ALC897 *" },
+      },
+    },
+    apply_properties = {
+      -- Always open device with 24-bit stereo @ 192 kHz profile
+      ["audio.channels"] = 2,
+      ["audio.format"] = "S24_3LE",
+      ["audio.rate"] = 192000,
+      -- PCM interrupt will be generated every ~100 ms for target profile above.
+      -- See https://www.alsa-project.org/main/index.php/FramesPeriods for details
+      ["api.alsa.period-size"] = 38400,
+    },
+  },
+  {
+    matches = {
+      {
+        -- Profile applies correct supported sampling rates for the analog ports
+        { "node.name", "matches", "*.pci-0000_00_1f.3.analog-*" },
+        { "alsa.id", "matches", "ALC897 Analog" },
+      },
+    },
+    apply_properties = {
+      -- Supported sample rates as obtained from procfs
+      -- 32 kHz and 88.2 kHz are unsupported for analog ports
+      ["audio.allowed-rates"] = "44100,48000,96000,192000",
+    },
+  },
+  {
+    matches = {
+      {
+        -- Profile applies correct supported sampling rates for the S/PDIF output
+        { "node.name", "matches", "alsa_output.pci-0000_00_1f.3.iec958-stereo" },
+        { "alsa.id", "matches", "ALC897 Digital" },
+      },
+    },
+    apply_properties = {
+      -- Supported sample rates as obtained from procfs
+      -- 32 kHz and 88.2 kHz are additionally supported for S/PDIF output
+      ["audio.allowed-rates"] = "32000,44100,48000,88200,96000,192000",
+    },
+  },
+  {
+    matches = {
+      {
+        -- Match both input and output of the Conexant CX20751/2 audio device
+        { "node.name", "matches", "*.pci-0000_00_1f.3.*" },
+        { "alsa.id", "matches", "CX20751/2 Analog" },
       },
     },
     apply_properties = {
@@ -174,7 +221,7 @@ alsa_monitor.rules = {
       ["api.alsa.period-size"] = 9600,
     },
   },
-  -- End rule changes for built-in speaker
+  -- End rule changes for built-in audio devices
   -- Begin rule changes for USB DAC
   {
     matches = {
