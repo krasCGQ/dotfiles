@@ -38,7 +38,7 @@ blocks:
       - type: path
         foreground: "#da3636"
         properties:
-          style: unique
+          style: letter
         style: plain
         template: "<white>in </><b>{{ .Path }}</b> "
       - type: git
