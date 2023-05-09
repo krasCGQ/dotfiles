@@ -1,0 +1,2 @@
+# Bundled jemalloc isn't compatible with hardened_malloc
+include blacklist-hardened_malloc.inc
