@@ -1,5 +1,8 @@
-# Unblock standard user directories
-include unblock-xdg.inc
+# Mesa preloading trick described in .inc file below doesn't work here
+include blacklist-hardened_malloc.inc
+
+# Whitelist standard user directories
+include whitelist-xdg.inc
 
 # Third party clients that share same executable name but different data path
 noblacklist ${HOME}/.local/share/64Gram

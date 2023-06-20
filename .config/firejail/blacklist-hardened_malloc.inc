@@ -8,9 +8,13 @@
 # Related GitHub issues:
 # Firefox: https://github.com/GrapheneOS/hardened_malloc/issues/123
 # rustc: https://github.com/rust-lang/rust/issues/107410 (a wontfix)
+#
+# Starting from Mesa 23.1, some DRI drivers might be incompatible with hardened_malloc, but can be
+# workarounded by attempting to preload an invalid library, launch desired application that loads a
+# Mesa DRI driver and close it afterwards, then switch to preload the correct library.
 
 # This is defined in globals.local
-ignore env LD_PRELOAD=/usr/lib/libhardened_malloc.so
+ignore env LD_PRELOAD=/$LIB/libhardened_malloc.so
 
 # Just in case preloading is still attempted
 rmenv LD_PRELOAD

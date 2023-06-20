@@ -1,5 +1,5 @@
-# Unblock standard user directories
-include unblock-xdg.inc
+# Whitelist standard user directories
+include whitelist-xdg.inc
 
 # Needed explicitly to prevent app from overwriting local desktop entries
 blacklist ${HOME}/.local/share/applications

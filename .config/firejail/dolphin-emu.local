@@ -1,0 +1,2 @@
+# fatal allocator error: sized deallocation mismatch (small)
+include blacklist-hardened_malloc.inc

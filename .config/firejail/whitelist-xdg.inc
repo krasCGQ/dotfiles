@@ -1,4 +1,4 @@
-# Unblock standard user directories
+# Whitelist standard user directories
 ignore include disable-xdg.inc
 include whitelist-player-common.inc
 whitelist ${DOCUMENTS}
