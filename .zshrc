@@ -16,8 +16,8 @@
 
 # Which shell are we running?
 # Save it early before sourcing any additional scripts as $0 may change
-# shellcheck disable=SC2034
-CURRENT_SHELL=$(command echo -n "$(basename "$0")" | sed 's/^-//')
+CURRENT_SHELL=$(command echo -n "$(basename "$0" 2>/dev/null)" | sed 's/^-//')
+CURRENT_SHELL=${CURRENT_SHELL:-$(basename "$SHELL")}
 
 # Tell Zsh where to save history of commands.
 # This mimics Bash naming, but it's Zsh we're dealing with
