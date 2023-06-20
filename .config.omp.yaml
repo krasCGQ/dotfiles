@@ -59,7 +59,7 @@ blocks:
       - type: exit
         foreground: lightGreen
         foreground_templates:
-          - "{{ if gt .Code 0 }}#ff0000{{ end }}"
+          - "{{ if (gt .Code 0) (ne .Code 141) }}#ff0000{{ end }}"
         properties:
           always_enabled: true
         style: plain
