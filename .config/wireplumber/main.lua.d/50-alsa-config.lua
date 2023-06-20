@@ -268,5 +268,21 @@ alsa_monitor.rules = {
       ["api.alsa.disable-batch"] = true,
     },
   },
+  {
+    matches = {
+      {
+        -- Profile for the Edifier G2000 USB DAC output (matches both analog and digital)
+        { "node.name", "matches", "alsa_output.usb-EDIFIER_EDIFIER_G2000_EDI00000X07-01.*" },
+      },
+    },
+    apply_properties = {
+      -- Not much can be done here due to limited capabilities
+      -- Headroom / period size is determined by WirePlumber on batched USB DAC devices
+      ["audio.channels"] = 2,
+      ["audio.format"] = "S16_LE",
+      ["audio.rate"] = 48000,
+      ["audio.allowed-rates"] = "48000",
+    },
+  },
   -- End rule changes for USB DAC
 }
