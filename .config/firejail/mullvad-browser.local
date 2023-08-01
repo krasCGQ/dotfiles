@@ -1,9 +1,5 @@
-# Firejail profile for mullvad-browser
-# Description: Privacy-focused web browser developed by Mullvad VPN and the Tor Project
-# Persistent local customizations
-include mullvad-browser.local
-# Persistent global definitions
-include globals.local
+# Temporary after e4913eb9cb2188f8b556b00ec0e713e11226126b
+# Needs double-checking with both AUR/mullvad-browser and AUR/mullvad-browser-bin
 
 noblacklist ${HOME}/.cache/mullvad/mullvad-browser
 noblacklist ${HOME}/.mullvad/mullvad-browser
@@ -14,6 +10,3 @@ whitelist ${HOME}/.cache/mullvad/mullvad-browser
 whitelist ${HOME}/.mullvad/mullvad-browser
 
 private-opt mullvad-browser
-
-# Redirect
-include firefox-common.profile
