@@ -6,8 +6,7 @@ Operation = Remove
 Target = usr/bin/*
 
 [Action]
-Description = Updating firejail symlinks on /usr/local/bin
-Exec = /usr/bin/dash -c 'firecfg >/dev/null 2>&1'
+Description = Updating firejail symlinks on /usr/local/bin...
+Exec = /usr/bin/bash -c 'firecfg >/dev/null 2>&1'
 When = PostTransaction
-Depends = dash
 Depends = firejail

@@ -4,9 +4,7 @@ Type = Package
 Target = systemd
 
 [Action]
-Description = Signing systemd-boot for Secure Boot
-Exec = /usr/bin/dash -c 'for i in /boot/EFI/systemd/systemd-bootx64.efi /boot/EFI/BOOT/BOOTX64.EFI; do if ! /usr/bin/sbverify --list $i 2> /dev/null | /usr/bin/grep -q "signature certificates"; then /usr/bin/sbsign --key /root/secureboot/current/db.key --cert /root/secureboot/current/db.crt --output $i $i; fi; done'
+Description = Signing systemd-boot for Secure Boot...
+Exec = /usr/bin/bash -c 'for i in /efi/EFI/systemd/systemd-bootx64.efi /efi/EFI/BOOT/BOOTX64.EFI; do if ! /usr/bin/sbverify --list $i 2> /dev/null | /usr/bin/grep -q "signature certificates"; then /usr/bin/sbsign --key /root/secureboot/current/db.key --cert /root/secureboot/current/db.crt --output $i $i; fi; done'
 When = PostTransaction
-Depends = dash
-Depends = grep
 Depends = sbsigntools

@@ -6,10 +6,7 @@ Target = usr/lib/initcpio/*
 Target = usr/lib/modules/*/vmlinuz
 
 [Action]
-Description = Signing kernel images for Secure Boot
-Exec = /usr/bin/find /boot/EFI/Linux -maxdepth 1 -name '*.efi' -exec /usr/bin/dash -c 'if ! /usr/bin/sbverify --list {} 2> /dev/null | /usr/bin/grep -q "signature certificates"; then /usr/bin/sbsign --key /root/secureboot/current/db.key --cert /root/secureboot/current/db.crt --output {} {}; fi' \ ;
+Description = Signing kernel images for Secure Boot...
+Exec = /usr/bin/find /efi/EFI/Linux -maxdepth 1 -name '*.efi' -exec /usr/bin/bash -c 'if ! /usr/bin/sbverify --list {} 2> /dev/null | /usr/bin/grep -q "signature certificates"; then /usr/bin/sbsign --key /root/secureboot/current/db.key --cert /root/secureboot/current/db.crt --output {} {}; fi' \ ;
 When = PostTransaction
-Depends = dash
-Depends = findutils
-Depends = grep
 Depends = sbsigntools
