@@ -33,9 +33,14 @@ GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 [[ -f $HOME/.pam_environment && -z $DISPLAY ]] &&
     eval "$(grep -v "^#" "$HOME"/.pam_environment | sed '/^$/d' | sed 's/^/export /g')"
 
-if [[ $(command -v exa) ]]; then
-    # Use exa for GNU ls replacement, while mimicking the latter.
-    # Exa defaults to use terminal colors automatically
+if [[ -n $(command -v eza) ]]; then
+    # Use eza for GNU ls replacement, while mimicking the latter.
+    # eza (exa community fork) defaults to use terminal colors automatically
+    alias dir='eza'
+    alias ls='eza'
+    alias vdir='eza -H -g -l'
+elif [[ -n $(command -v exa) ]]; then
+    # This is currently retained for older systems that have yet to move to eza.
     alias dir='exa'
     alias ls='exa'
     alias vdir='exa -H -g -l'
