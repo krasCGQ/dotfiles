@@ -1,0 +1,15 @@
+[Match]
+Type=wlan
+Name=wl*
+Virtualization=no
+
+[Network]
+DHCP=yes
+IgnoreCarrierLoss=3s
+
+[DHCPv4]
+Anonymize=yes
+RouteMetric=512
+
+[IPv6AcceptRA]
+RouteMetric=512
