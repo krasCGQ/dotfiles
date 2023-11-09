@@ -1,0 +1,5 @@
+#!/bin/sh
+# Only execute if all other interfaces are offline
+if ! /usr/bin/networkctl status | grep -w online >/dev/null; then
+    /usr/bin/chronyc offline
+fi
