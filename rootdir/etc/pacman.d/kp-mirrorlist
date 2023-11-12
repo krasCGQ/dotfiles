@@ -1,2 +1,2 @@
-Server = file:///mnt/nvme0n1/archlinux/repos/$repo
+Server = file:///mnt/storage/archlinux/repos/$repo
 Server = file:///run/media/krascgq/2f62c6f4-6703-472f-8d0b-66f96fd52a10/archlinux/repos/$repo
