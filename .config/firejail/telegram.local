@@ -1,6 +1,3 @@
-# Mesa preloading trick described in .inc file below doesn't work here
-include blacklist-hardened_malloc.inc
-
 # Whitelist standard user directories
 include whitelist-xdg.inc
 

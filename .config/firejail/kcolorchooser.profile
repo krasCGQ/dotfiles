@@ -32,7 +32,6 @@ whitelist ${HOME}/.config
 apparmor
 caps.drop all
 net none
-no3d
 nodvd
 nogroups
 noinput

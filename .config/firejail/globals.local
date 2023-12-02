@@ -1,3 +1,6 @@
 # Preload default variant of hardened_malloc for jailed apps.
 # Some app profiles might be excluded from this rule by including the relevant *.inc file.
 env LD_PRELOAD=/$LIB/libhardened_malloc.so
+
+# Some apps crash under Wayland: flameshot and kcolorchooser; to name few
+ignore no3d

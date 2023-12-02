@@ -1,0 +1,8 @@
+# This is for both tray icon and native notifications
+# https://github.com/netblue30/firejail/issues/3707#issuecomment-717990844
+?ALLOW_TRAY: ignore dbus-user none
+?ALLOW_TRAY: dbus-user filter
+?ALLOW_TRAY: dbus-user.talk org.kde.knotifications
+?ALLOW_TRAY: dbus-user.talk org.kde.StatusNotifierWatcher
+?ALLOW_TRAY: dbus-user.talk org.freedesktop.Notifications
+?ALLOW_TRAY: dbus-user.talk org.freedesktop.StatusNotifierItem
