@@ -1,0 +1,27 @@
+# Newer Avidemux finally uses XDG directories
+noblacklist ${HOME}/.config/avidemux6
+noblacklist ${HOME}/.local/share/avidemux6
+mkdir ${HOME}/.config/avidemux6
+mkdir ${HOME}/.local/share/avidemux6
+whitelist ${HOME}/.config/avidemux6
+whitelist ${HOME}/.local/share/avidemux6
+
+# Just in case when we need to also create Qt6 counterparts
+noblacklist ${HOME}/.config/avidemux3_qt6rc
+mkdir ${HOME}/.config/avidemux3_qt6rc
+whitelist ${HOME}/.config/avidemux3_qt6rc
+
+# Allow Pictures folder, we might need some static images
+ignore blacklist ${PICTURES}
+whitelist ${PICTURES}
+read-only ${PICTURES}
+
+# Include Qt6 binaries in whitelisted binaries
+private-bin avidemux3_jobs_qt6,avidemux3_qt6
+
+# Filter instead of disabling session DBus access
+ignore dbus-user none
+dbus-user filter
+
+# Global menu on KDE
+dbus-user.talk com.canonical.AppMenu.Registrar
