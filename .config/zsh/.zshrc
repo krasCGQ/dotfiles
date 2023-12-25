@@ -19,17 +19,20 @@
 CURRENT_SHELL=$(command echo -n "$(basename "$0" 2>/dev/null)" | sed 's/^-//')
 CURRENT_SHELL=${CURRENT_SHELL:-$(basename "$SHELL")}
 
-# Tell Zsh where to save history of commands.
-# This mimics Bash naming, but it's Zsh we're dealing with
-HISTFILE="$HOME"/.zsh_history
+# Pre-create XDG-compatible data directories
+mkdir -m 700 -p "${XDG_CACHE_HOME:-$HOME/.cache}/zsh" "${XDG_STATE_HOME:-$HOME/.local/state}/zsh"
+
+# Tell Zsh where to save history of commands
+HISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}"/zsh/history
 
 # Control how many last lines of history to keep.
 # Debian defaults to 2000 in their ~/.bashrc
 SAVEHIST=2000
 
 # Initialize shell completion system and load it
-zstyle :compinstall filename "$HOME"/.zshrc
-autoload -Uz compinit && compinit
+zstyle :compinstall filename "${ZDOTDIR:-$HOME}"/.zshrc
+zstyle ':completion:*' cache-path "${XDG_CACHE_HOME:-$HOME/.cache}"/zsh/zcompcache
+autoload -Uz compinit && compinit -d "${XDG_CACHE_HOME:-$HOME/.cache}"/zsh/zcompdump
 
 # Load internal mechanics of color handling
 autoload -Uz colors && colors
@@ -49,7 +52,7 @@ bindkey -e
 export HISTFILE SAVEHIST
 
 # Include shared shell configuration
-# shellcheck source=SCRIPTDIR/.shrc-common
+# shellcheck source=SCRIPTDIR/../../.shrc-common
 source "$HOME"/.files/.shrc-common
 
 # Unset CURRENT_SHELL as we don't need it anymore

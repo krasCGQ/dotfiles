@@ -11,6 +11,12 @@
 # shellcheck disable=SC2034
 CURRENT_SHELL=$(basename "${0/-/}" 2>/dev/null || basename "$SHELL")
 
+# Pre-create XDG-compatible state directory
+mkdir -m 700 -p "${XDG_STATE_HOME:-$HOME/.local/state}/bash"
+
+# Tell Bash where to save history of commands
+HISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}"/bash/history
+
 # Control how many last lines of history to keep.
 # Debian defaults to 2000 in their ~/.bashrc
 HISTFILESIZE=2000
