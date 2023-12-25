@@ -1,6 +1,19 @@
 # Preload default variant of hardened_malloc for jailed apps.
-# Some app profiles might be excluded from this rule by including the relevant *.inc file.
+# Some app profiles might be excluded from this rule by including the relevant *.inc file
 env LD_PRELOAD=/$LIB/libhardened_malloc.so
 
 # Some apps crash under Wayland: flameshot and kcolorchooser; to name few
 ignore no3d
+
+# Non-exhaustive list of dot folders to reverse what would have been executed.
+# This keeps firejail from creating empty folders that are now unused in userspace
+ignore mkdir ${HOME}/.TelegramDesktop
+ignore mkdir ${HOME}/.avidemux3
+ignore mkdir ${HOME}/.avidemux6
+blacklist ${HOME}/.TelegramDesktop
+blacklist ${HOME}/.avidemux3
+blacklist ${HOME}/.avidemux6
+
+# Unconditionally allow all apps to register global menu context on KDE or Unity.
+# Depends on allowing session DBus access otherwise this is ignored
+dbus-user.talk com.canonical.AppMenu.Registrar

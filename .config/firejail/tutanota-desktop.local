@@ -12,6 +12,7 @@ read-write ${HOME}/.config/autostart
 # Might be needed if app is running with Electron under Wayland
 ?ALLOW_TRAY: dbus-user.own org.kde.*
 ?ALLOW_TRAY: dbus-user.talk org.kde.StatusNotifierWatcher
+?ALLOW_TRAY: dbus-user.talk org.kde.knotifications
 
 # Needed to avoid launching a new session when there's already one running
 join-or-start tutanota-desktop

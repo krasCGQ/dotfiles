@@ -1,2 +1,6 @@
 # fatal allocator error: sized deallocation mismatch (small)
 include blacklist-hardened_malloc.inc
+
+# Filter instead of disabling session DBus access
+ignore dbus-user none
+dbus-user filter
