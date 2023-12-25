@@ -1,5 +1,4 @@
 #!/hint/zsh
-# shellcheck shell=bash
 #
 # SPDX-License-Identifier: Unlicense
 #

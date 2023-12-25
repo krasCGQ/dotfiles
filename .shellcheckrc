@@ -1,0 +1,3 @@
+disable=SC2174 # acknowledged
+external-sources=true
+shell=bash
