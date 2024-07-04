@@ -86,5 +86,5 @@ command -v oh-my-posh >/dev/null &&
 
 # Source shell plugins, as defined in Sheldon config file
 if [[ $CURRENT_SHELL == "bash" || $CURRENT_SHELL == "zsh" ]] && command -v sheldon >/dev/null; then
-    test -r $SHELDON_CONFIG_FILE && eval "$(sheldon source)"
+    test -r "$SHELDON_CONFIG_FILE" && eval "$(sheldon source)"
 fi
