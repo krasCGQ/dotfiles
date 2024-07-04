@@ -4,9 +4,14 @@
 #
 
 # Determine which additional environment setup to load
-HOST_NAME=$(</etc/hostname)
-[[ $HOST_NAME == "harutsuki" || $HOST_NAME == "indomptable" ]] && TYPE=notebook || TYPE=server
-unset HOST_NAME
+if [[ -n $PREFIX && $PREFIX =~ com.termux ]]; then
+    TYPE=android # simple, nothing extra to bother here
+else
+    case "$(</etc/hostname)" in
+    'harutsuki' | 'shirayuki') TYPE=notebook ;;
+    *) TYPE=server ;;
+    esac
+fi
 
 # Control how many last lines of history to remember
 HISTSIZE=1000
