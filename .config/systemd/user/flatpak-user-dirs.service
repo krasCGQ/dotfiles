@@ -1,0 +1,30 @@
+# SPDX-License-Identifier: Unlicense
+#
+# This systemd user unit is and will not be a full drop-in local replacement
+# for the common workflow that requires root privileges to be executed, since
+# entries still need to be added explicitly on /etc/fstab with user,exec mount
+# options individually (and has to be strictly in this order).
+#
+# This is deliberately tied to user-specific home directory since this is
+# intended solely for users managed by systemd-homed, where additional mount
+# points cannot stay mounted permanently.
+#
+
+[Unit]
+Description=Mount Flatpak user directories as executable
+BindsTo=home-%u.mount
+PartOf=home-%u.mount
+Conflicts=umount.target
+Before=umount.target
+After=home-%u.mount
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/mount /home/%u/.local/share/flatpak
+ExecStart=/usr/bin/mount /home/%u/.var/app
+ExecStop=/usr/bin/umount /home/%u/.local/share/flatpak
+ExecStop=/usr/bin/umount /home/%u/.var/app
+
+[Install]
+WantedBy=default.target
