@@ -1,0 +1,8 @@
+# Make sure ssh-agent is accessible to ssh itself
+whitelist ${RUNUSER}/ssh-agent.socket
+
+# Needed to unbreak ksshaskpass' communication with KWallet
+ignore blacklist ${HOME}/.config/kwalletrc
+ignore dbus-user none
+dbus-user filter
+dbus-user.talk org.kde.kwalletd6

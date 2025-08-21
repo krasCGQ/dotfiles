@@ -1,0 +1,2 @@
+# Fallback to -light variant; GUI crashes on startup
+include use-hardened_malloc-light.inc
