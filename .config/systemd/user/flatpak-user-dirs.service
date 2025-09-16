@@ -22,8 +22,10 @@ After=home-%u.mount
 Type=oneshot
 RemainAfterExit=yes
 ExecStart=/usr/bin/mount /home/%u/.local/share/flatpak
+ExecStart=/usr/bin/mount /home/%u/.local/share/umu/steamrt3
 ExecStart=/usr/bin/mount /home/%u/.var/app
 ExecStop=/usr/bin/umount /home/%u/.local/share/flatpak
+ExecStop=/usr/bin/umount /home/%u/.local/share/umu/steamrt3
 ExecStop=/usr/bin/umount /home/%u/.var/app
 
 [Install]
