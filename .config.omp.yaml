@@ -1,68 +1,87 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
-console_title_template: "({{.UserName}}@{{.HostName}}) {{.Shell}}:{{.PWD}}"
+
+console_title_template: ({{.UserName}}@{{.HostName}}) {{.Shell}}:{{.PWD}}
 blocks:
-  - type: prompt
-    alignment: left
-    newline: true
-    segments:
-      - type: text
-        foreground: "#c83089"
-        style: plain
-        template: "<b>\ue602</b> "
-      - type: exit
-        foreground: "#ff0000"
-        style: plain
-        # Whitelist SIGPIPE from being shown, as they aren't real errors to even make any concern.
-        template: "{{ if and (gt .Code 0) (ne .Code 141) }}<b>{{ .Code }}</b>{{ end }} "
-      - type: text
-        foreground: "#86c1da"
-        style: plain
-        template: "<b>{{ .Shell }}</b> "
-      - type: python
-        foreground: white
-        properties:
-          fetch_version: false
-        style: plain
-        template: "{{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }}{{ end }}{{ .Full }}{{ end }} "
-      - type: text
-        foreground: "#d861a6"
-        style: plain
-        template: "<b>\ue602</b> "
-      - type: root
-        foreground: red
-        style: plain
-        template: " % "
-      - type: session
-        style: plain
-        template: "<#005bbb><b>{{ .UserName }}</b></><white>@</><#ffd500><b>{{ .HostName }}</b></> "
-      - type: path
-        foreground: "#da3636"
-        properties:
-          style: letter
-        style: plain
-        template: "<white>in </><b>{{ .Path }}</b> "
-      - type: git
-        foreground: "#3ab038"
-        style: plain
-        template: "<white>on</> <b>{{ .HEAD }}</b> "
-      - type: executiontime
-        foreground: white
-        properties:
-          style: round
-          threshold: 3000 # 3 seconds
-        style: plain
-        template: "took <#2adcd3><b>{{ .FormattedMs }}</b></> "
-  - type: prompt
-    alignment: left
-    newline: true
-    segments:
-      - type: exit
-        foreground: lightGreen
-        foreground_templates:
-          - "{{ if (gt .Code 0) (ne .Code 141) }}#ff0000{{ end }}"
-        properties:
-          always_enabled: true
-        style: plain
-        template: "$"
+    - type: prompt
+      alignment: left
+      segments:
+        - properties:
+            cache_duration: none
+          template: '<b></b> '
+          foreground: '#c83089'
+          type: text
+          style: plain
+        - properties:
+            cache_duration: none
+          # Whitelist SIGPIPE from being shown, as they aren't real errors to even make any concern.
+          template: '{{ if and (gt .Code 0) (ne .Code 141) }}<b>{{ .Code }}</b>{{ end }} '
+          foreground: '#ff0000'
+          type: exit
+          style: plain
+        - properties:
+            cache_duration: none
+          template: '<b>{{ .Shell }}</b> '
+          foreground: '#86c1da'
+          type: text
+          style: plain
+        - properties:
+            cache_duration: none
+            fetch_version: false
+          template: '{{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }}{{ end }}{{ .Full }}{{ end }} '
+          foreground: white
+          type: python
+          style: plain
+        - properties:
+            cache_duration: none
+          template: '<b></b> '
+          foreground: '#d861a6'
+          type: text
+          style: plain
+        - properties:
+            cache_duration: none
+          template: ' % '
+          foreground: red
+          type: root
+          style: plain
+        - properties:
+            cache_duration: none
+          template: '<#005bbb><b>{{ .UserName }}</b></><white>@</><#ffd500><b>{{ .HostName }}</b></> '
+          type: session
+          style: plain
+        - properties:
+            cache_duration: none
+            style: letter
+          template: '<white>in </><b>{{ .Path }}</b> '
+          foreground: '#da3636'
+          type: path
+          style: plain
+        - properties:
+            cache_duration: none
+          template: '<white>on</> <b>{{ .HEAD }}</b> '
+          foreground: '#3ab038'
+          type: git
+          style: plain
+        - properties:
+            cache_duration: none
+            style: round
+            threshold: 3000
+          template: 'took <#2adcd3><b>{{ .FormattedMs }}</b></> '
+          foreground: white
+          type: executiontime
+          style: plain
+      newline: true
+    - type: prompt
+      alignment: left
+      segments:
+        - properties:
+            always_enabled: true
+            cache_duration: none
+          template: $
+          foreground: lightGreen
+          type: exit
+          style: plain
+          foreground_templates:
+            - '{{ if (gt .Code 0) (ne .Code 141) }}#ff0000{{ end }}'
+      newline: true
+version: 3
 final_space: true
-version: 2
