@@ -1,0 +1,2 @@
+# Uses Glycin -- see the include file for details
+include blacklist-hardened_malloc.inc
